@@ -15,67 +15,7 @@ require_once __DIR__ . '/config/database.php';
 </head>
 <body>
     <!-- Header -->
-    <header class="">
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="logo">
-                    <div class="logo-container">
-                        <img src="public/imagenes/logos/wilrop_vertical.png" alt="Wilrop Colombia Travel" class="logo-image">
-                        <div class="logo-text">
-                            <h6>Wilrop Colombia Travel</h6>
-                        </div>
-                    </div>
-                </div>
-                <ul class="nav-menu">
-                    <li><a href="index.php" class="nav-link">Inicio</a></li>
-                    <li class="nav-item dropdown">
-                        <a href="views/countries/list.php" class="nav-link dropdown-toggle" id="destinosDropdown" data-toggle="dropdown">Destinos <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <?php
-                            // Conexión PDO
-                            require_once __DIR__ . '/config/database.php';
-                            $stmt = $pdo->query('SELECT id, pais FROM paises ORDER BY pais ASC');
-                            while ($pais = $stmt->fetch()) {
-                                echo '<li><a class="dropdown-item" href="ciudades.php?pais=' . $pais['id'] . '">' . htmlspecialchars($pais['pais']) . '</a></li>';
-                            }
-                            ?>
-                        </ul>
-                    </li>
-                    <li><a href="#servicios" class="nav-link">Servicios</a></li>
-                    <li><a href="products.html" class="nav-link">Productos</a></li>
-                    <?php if (isset($_SESSION['active'])): ?>
-                        <li><a href="admin" class="nav-link">Admin</a></li>
-                    <?php endif; ?>
-                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
-                    <?php if (isset($_SESSION['active'])): ?>
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link login-btn dropdown-toggle" id="userDropdown" data-toggle="dropdown">
-                                <i class="fas fa-user"></i> <?php echo htmlspecialchars($_SESSION['nombre']); ?>
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="profile.php">Mi Perfil</a>
-                                <a class="dropdown-item" href="my-bookings.php">Mis Reservas</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="logout">Cerrar Sesión</a>
-                            </div>
-                        </li>
-                    <?php else: ?>
-                        <li><a href="login" class="nav-link login-btn">Iniciar Sesión</a></li>
-                    <?php endif; ?>
-                        <!-- Enlace fijo para pruebas -->
-                        <li><a href="?controller=auth&action=login" class="login-btn" style="color: red; font-weight: bold;">Iniciar Sesión (Prueba)</a></li>
-                </ul>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-            </div>
-        </nav>
-        <!-- Overlay para menú móvil -->
-        <div class="mobile-menu-overlay"></div>
-    </header>
-
+    <?php include __DIR__ . "/views/components/navbar.php"; ?>
     <!-- Hero Section -->
     <section id="inicio" class="hero">
         <!-- Carrusel de Imágenes -->
@@ -118,9 +58,9 @@ require_once __DIR__ . '/config/database.php';
                 <p>Especialistas en turismo entre República Dominicana y Antioquia</p>
             </div>
             <div class="destinos-grid">
-                <a href="src/dominicana/dominicana.php" class="destino-card" style="text-decoration:none; color:inherit;">
+                <a href="views/countries/dominicana.php" class="destino-card" style="text-decoration:none; color:inherit;">
                     <div class="destino-image">
-                        <img src="imagenes/destinos/republica_dominicana/punta_cana/punta_cana3.png" alt="Punta Cana">
+                        <img src="public/imagenes/destinos/republica_dominicana/punta_cana/punta_cana3.png" alt="Punta Cana">
                     </div>
                     <div class="destino-content">
                         <h3>República Dominicana</h3>
@@ -133,9 +73,9 @@ require_once __DIR__ . '/config/database.php';
                         </ul>
                     </div>
                 </a>
-                <a href="src/colombia/colombia.php" class="destino-card" style="text-decoration:none; color:inherit;">
+                <a href="views/countries/colombia.php" class="destino-card" style="text-decoration:none; color:inherit;">
                     <div class="destino-image">
-                        <i class="fas fa-mountain"></i>
+                        <img src="public/imagenes/destinos/colombia/antioquia/medellin.png" alt="Medellín">
                     </div>
                     <div class="destino-content">
                         <h3>Colombia</h3>
@@ -256,42 +196,7 @@ require_once __DIR__ . '/config/database.php';
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Wilrop Colombia Travel</h3>
-                    <p>Especialistas en turismo entre República Dominicana y Antioquia, Colombia. Tu agencia de confianza para experiencias únicas.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Enlaces Rápidos</h4>
-                    <ul>
-                        <li><a href="#inicio">Inicio</a></li>
-                        <li><a href="#destinos">Destinos</a></li>
-                        <li><a href="#servicios">Servicios</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Destinos</h4>
-                    <ul>
-                        <li>República Dominicana</li>
-                        <li>Antioquia, Colombia</li>
-                        <li>Punta Cana</li>
-                        <li>Medellín</li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contacto</h4>
-                    <p><i class="fas fa-phone"></i> + 1 (829) 794-9960</p>
-                    <p><i class="fas fa-envelope"></i> info@wilropcolombia.com</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Wilrop Colombia Travel. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </footer>
+    <?php include __DIR__ . "/views/components/footer.php"; ?>
 
     <script src="assets/js/scripts.js"></script>
 </body>

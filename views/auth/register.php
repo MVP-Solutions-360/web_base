@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - Wilrop Colombia Travel</title>
     <meta name="description" content="Regístrate en Wilrop Colombia Travel para acceder a servicios exclusivos y gestionar tus reservas.">
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="nav-container">
                 <div class="logo">
                     <div class="logo-container">
-                        <img src="/imagenes/logos/wilrop_vertical.png" alt="Wilrop Colombia Travel" class="logo-image">
+                        <img src="/public/imagenes/logos/wilrop_vertical.png" alt="Wilrop Colombia Travel" class="logo-image">
                         <div class="logo-text">
                             <h6>Wilrop Colombia Travel</h6>
                         </div>
@@ -69,13 +69,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <ul class="nav-menu">
                     <li><a href="/index.php" class="nav-link">Inicio</a></li>
-                    <li><a href="/src/dominicana/dominicana.php" class="nav-link">República Dominicana</a></li>
-                    <li><a href="/src/colombia/colombia.php" class="nav-link">Colombia</a></li>
+                    <li><a href="/src/dominicana/dominicana.php" class="nav-link">Destinos</a></li>
                     <li><a href="/index.php#servicios" class="nav-link">Servicios</a></li>
                     <li><a href="/products.html" class="nav-link">Productos</a></li>
                     <li><a href="/src/admin/admin.php" class="nav-link">Admin</a></li>
                     <li><a href="/index.php#contacto" class="nav-link">Contacto</a></li>
-                    <li><a href="/src/admin/login.php" class="nav-link login-btn">Iniciar Sesión</a></li>
+                     <li><a href="/views/auth/login.php" class="nav-link login-btn">Iniciar Sesión</a></li>
                 </ul>
                 <div class="hamburger">
                     <span class="bar"></span>
@@ -96,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <p>Únete a Wilrop Colombia Travel y descubre experiencias únicas</p>
                     </div>
 
-                    <form class="login-form" method="POST" action="/src/admin/register.php">
+                    <form id="registerForm" class="login-form" method="POST" action="/views/auth/register.php">
                         <?php if (!empty($error)): ?>
                             <div class="alert alert-danger">
                                 <i class="fas fa-exclamation-triangle"></i>
@@ -163,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </button>
 
                         <div class="login-footer">
-                            <p>¿Ya tienes una cuenta? <a href="/src/admin/login.php" class="register-link">Inicia sesión aquí</a></p>
+                            <p>¿Ya tienes una cuenta? <a href="/views/auth/login.php" class="register-link">Inicia sesión aquí</a></p>
                         </div>
                     </form>
                 </div>
@@ -231,6 +230,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </footer>
 
-    <script src="/scripts.js"></script>
+    <script src="/assets/js/scripts.js"></script>
 </body>
 </html>

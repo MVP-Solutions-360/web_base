@@ -1,6 +1,3 @@
-// Ejemplo de definición de rutas
-// ...aquí se definen las rutas y controladores...
-
 <?php
 // Rutas principales del proyecto
 

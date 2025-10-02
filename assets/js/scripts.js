@@ -459,8 +459,11 @@ function eliminarProducto(id) {
 // Efectos de scroll
 function setupScrollEffects() {
     // Header transparente al hacer scroll
+    const header = document.querySelector('.header');
     window.addEventListener('scroll', function() {
-        const header = document.querySelector('.header');
+        if (!header) {
+            return;
+        }
         if (window.scrollY > 100) {
             header.style.background = 'rgba(255, 255, 255, 0.98)';
         } else {
@@ -655,12 +658,12 @@ let domSlideInterval;
 
 // Lista de imágenes de República Dominicana
 const dominicanaImages = [
-    'imagenes/destinos/republica_dominicana/punta_cana/pareja_playa1.png',
-    'imagenes/destinos/republica_dominicana/punta_cana/pareja_playa2.png',
-    'imagenes/destinos/republica_dominicana/punta_cana/punta_cana1.png',
-    'imagenes/destinos/republica_dominicana/punta_cana/punta_cana2.png',
-    'imagenes/destinos/republica_dominicana/punta_cana/punta_cana3.png',
-    'imagenes/destinos/republica_dominicana/punta_cana/punta_cana4.png'
+    '/public/imagenes/destinos/index/pareja_playa1.png',
+    '/public/imagenes/destinos/index/pareja_playa2.png',
+    '/public/imagenes/destinos/index/punta_cana1.png',
+    '/public/imagenes/destinos/index/punta_cana2.png',
+    '/public/imagenes/destinos/index/punta_cana3.png',
+    '/public/imagenes/destinos/index/punta_cana4.png'
 ];
 
 // Crear slides dinámicamente para República Dominicana
@@ -771,10 +774,11 @@ let colSlideInterval;
 
 // Lista de imágenes de Colombia (Guatapé)
 const colombiaImages = [
-    'imagenes/destinos/colombia/antioquia/guatape/guatape1.png',
-    'imagenes/destinos/colombia/antioquia/guatape/guatape2.png',
-    'imagenes/destinos/colombia/antioquia/guatape/guatape3.png',
-    'imagenes/destinos/colombia/antioquia/guatape/penol1.png'
+    
+    '/public/imagenes/destinos/Colombia/antioquia/guatape/guatape1.png',
+    '/public/imagenes/destinos/Colombia/antioquia/guatape/guatape2.png',
+    '/public/imagenes/destinos/Colombia/antioquia/guatape/guatape3.png',
+    '/public/imagenes/destinos/Colombia/antioquia/guatape/penol1.png'
 ];
 
 // Crear slides dinámicamente para Colombia
@@ -899,25 +903,28 @@ function initLogin() {
 
 // Manejar el envío del formulario de login
 function handleLogin(e) {
-    e.preventDefault();
-    
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const rememberMe = document.getElementById('rememberMe').checked;
-    
-    // Validaciones básicas
+    const emailEl = document.getElementById('email');
+    const passwordEl = document.getElementById('password');
+    const rememberEl = document.getElementById('rememberMe');
+
+    const email = emailEl ? emailEl.value.trim() : '';
+    const password = passwordEl ? passwordEl.value.trim() : '';
+    const rememberMe = !!(rememberEl && rememberEl.checked);
+
+    // Validaciones básicas: si hay error, evitamos el submit
     if (!email || !password) {
+        e.preventDefault();
         showNotification('Por favor, completa todos los campos', 'error');
         return;
     }
-    
+
     if (!isValidEmail(email)) {
+        e.preventDefault();
         showNotification('Por favor, ingresa un email válido', 'error');
         return;
     }
-    
-    // El formulario se enviará al servidor PHP para procesamiento
-    // No necesitamos JavaScript adicional ya que PHP maneja la autenticación
+
+    // Válido: permitimos el submit normal al backend PHP
     showNotification('Iniciando sesión...', 'info');
 }
 
@@ -1295,23 +1302,23 @@ let slideInterval;
 
 // Lista de imágenes disponibles en la carpeta
 const carouselImages = [
-    'imagenes/destinos/index/buggie.png',
-    'imagenes/destinos/index/buggie2.png',
-    'imagenes/destinos/index/buggie3.png',
-    'imagenes/destinos/index/cocobongo.png',
-    'imagenes/destinos/index/dominicana1.png',
-    'imagenes/destinos/index/dominicana2.png',
-    'imagenes/destinos/index/dominicana3.png',
-    'imagenes/destinos/index/guatape1.png',
-    'imagenes/destinos/index/guatape2.png',
-    'imagenes/destinos/index/guatape3.png',
-    'imagenes/destinos/index/pareja_playa1.png',
-    'imagenes/destinos/index/pareja_playa2.png',
-    'imagenes/destinos/index/penol1.png',
-    'imagenes/destinos/index/punta_cana1.png',
-    'imagenes/destinos/index/punta_cana2.png',
-    'imagenes/destinos/index/punta_cana3.png',
-    'imagenes/destinos/index/punta_cana4.png'
+    '/public/imagenes/destinos/index/buggie.png',
+    '/public/imagenes/destinos/index/buggie2.png',
+    '/public/imagenes/destinos/index/buggie3.png',
+    '/public/imagenes/destinos/index/cocobongo.png',
+    '/public/imagenes/destinos/index/dominicana1.png',
+    '/public/imagenes/destinos/index/dominicana2.png',
+    '/public/imagenes/destinos/index/dominicana3.png',
+    '/public/imagenes/destinos/index/guatape1.png',
+    '/public/imagenes/destinos/index/guatape2.png',
+    '/public/imagenes/destinos/index/guatape3.png',
+    '/public/imagenes/destinos/index/pareja_playa1.png',
+    '/public/imagenes/destinos/index/pareja_playa2.png',
+    '/public/imagenes/destinos/index/penol1.png',
+    '/public/imagenes/destinos/index/punta_cana1.png',
+    '/public/imagenes/destinos/index/punta_cana2.png',
+    '/public/imagenes/destinos/index/punta_cana3.png',
+    '/public/imagenes/destinos/index/punta_cana4.png'
 ];
 
 // Crear slides dinámicamente
