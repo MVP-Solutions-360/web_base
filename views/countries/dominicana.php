@@ -88,8 +88,8 @@
                     </div>
                 </div>
                 <div class="destino-card">
-                    <div class="destino-image puerto-plata">
-                        <i class="fas fa-mountain"></i>
+                    <div class="destino-image">
+                        <img src="/public/imagenes/destinos/republica_dominicana/puerto_plata.png" alt="Puerto Plata">
                     </div>
                     <div class="destino-content">
                         <h3>Puerto Plata</h3>
@@ -103,8 +103,8 @@
                     </div>
                 </div>
                 <div class="destino-card">
-                    <div class="destino-image samana">
-                        <i class="fas fa-whale"></i>
+                    <div class="destino-image">
+                        <img src="/public/imagenes/destinos/republica_dominicana/samana.png" alt="Samaná">
                     </div>
                     <div class="destino-content">
                         <h3>Samaná</h3>
@@ -262,6 +262,26 @@
     <?php include __DIR__ . "/../components/footer.php"; ?>
 
     <script src="/assets/js/scripts.js"></script>
+    <script>
+        const dominicanaImages = [
+            '/imagenes/destinos/index/pareja_playa1.png',
+            '/imagenes/destinos/index/pareja_playa2.png',
+            '/imagenes/destinos/index/punta_cana1.png',
+            '/imagenes/destinos/index/punta_cana2.png',
+            '/imagenes/destinos/index/punta_cana3.png',
+            '/imagenes/destinos/index/punta_cana4.png'
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Detectar qué página estamos cargando
+            const currentPage = window.location.pathname.split('/').pop();
+            // Permitir carrusel en index.php y index.html
+            if (currentPage === 'dominicana.html') {
+                initDominicanaCarousel();
+            }
+            // ...otros casos...
+        });
+    </script>
 </body>
 
 </html>

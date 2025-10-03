@@ -772,6 +772,96 @@ let colSlides = [];
 let colIndicators = [];
 let colSlideInterval;
 
+// Carrusel Antioquia
+let currentAntioquiaSlideIndex = 0;
+let antioquiaSlides = [];
+let antioquiaIndicators = [];
+let antioquiaSlideInterval;
+
+// Lista de imágenes de Antioquia
+const antioquiaImages = [
+    '/public/imagenes/destinos/colombia/antioquia/cafe_colombiano.png',
+    '/public/imagenes/destinos/colombia/antioquia/arquitectura1.png.jpg',
+    '/public/imagenes/destinos/colombia/antioquia/arquitectura2.png.jpg',
+    '/public/imagenes/destinos/colombia/antioquia/arquitectura3.png',
+    '/public/imagenes/destinos/colombia/antioquia/gastronomia1.png',
+    '/public/imagenes/destinos/colombia/antioquia/bandeja_paisa.png',
+    '/public/imagenes/destinos/colombia/antioquia/metro_medellin.png',
+    '/public/imagenes/destinos/colombia/antioquia/jardin.png',
+    '/public/imagenes/destinos/colombia/antioquia/jerico.png',
+    '/public/imagenes/destinos/colombia/antioquia/medellin.png',
+    '/public/imagenes/destinos/colombia/antioquia/santa_fe.png',
+];
+];
+
+function createAntioquiaCarouselSlides() {
+    const carousel = document.getElementById('antioquiaCarousel');
+    const indicatorsContainer = document.getElementById('antioquiaIndicators');
+    if (!carousel || !indicatorsContainer) return;
+    carousel.innerHTML = '';
+    indicatorsContainer.innerHTML = '';
+    antioquiaImages.forEach((imagePath, index) => {
+        const slide = document.createElement('div');
+        slide.className = `carousel-slide ${index === 0 ? 'active' : ''}`;
+        slide.style.backgroundImage = `url('${imagePath}')`;
+        carousel.appendChild(slide);
+        const indicator = document.createElement('span');
+        indicator.className = `indicator ${index === 0 ? 'active' : ''}`;
+        indicator.onclick = () => currentSlideAntioquia(index + 1);
+        indicatorsContainer.appendChild(indicator);
+    });
+    antioquiaSlides = document.querySelectorAll('#antioquiaCarousel .carousel-slide');
+    antioquiaIndicators = document.querySelectorAll('#antioquiaIndicators .indicator');
+}
+
+function initAntioquiaCarousel() {
+    createAntioquiaCarouselSlides();
+    if (antioquiaSlides.length === 0) return;
+    showSlideAntioquia(0);
+    startAutoSlideAntioquia();
+    const carousel = document.querySelector('#antioquiaCarousel');
+    if (carousel) {
+        carousel.addEventListener('mouseenter', stopAutoSlideAntioquia);
+        carousel.addEventListener('mouseleave', startAutoSlideAntioquia);
+    }
+}
+
+function showSlideAntioquia(index) {
+    antioquiaSlides.forEach(slide => slide.classList.remove('active'));
+    antioquiaIndicators.forEach(indicator => indicator.classList.remove('active'));
+    if (antioquiaSlides[index]) {
+        antioquiaSlides[index].classList.add('active');
+    }
+    if (antioquiaIndicators[index]) {
+        antioquiaIndicators[index].classList.add('active');
+    }
+}
+
+function changeSlideAntioquia(direction) {
+    currentAntioquiaSlideIndex += direction;
+    if (currentAntioquiaSlideIndex >= antioquiaSlides.length) {
+        currentAntioquiaSlideIndex = 0;
+    } else if (currentAntioquiaSlideIndex < 0) {
+        currentAntioquiaSlideIndex = antioquiaSlides.length - 1;
+    }
+    showSlideAntioquia(currentAntioquiaSlideIndex);
+}
+
+function currentSlideAntioquia(slideNumber) {
+    currentAntioquiaSlideIndex = slideNumber - 1;
+    showSlideAntioquia(currentAntioquiaSlideIndex);
+}
+
+function startAutoSlideAntioquia() {
+    antioquiaSlideInterval = setInterval(() => {
+        changeSlideAntioquia(1);
+    }, 5000);
+}
+
+function stopAutoSlideAntioquia() {
+    clearInterval(antioquiaSlideInterval);
+}
+
 // Lista de imágenes de Colombia (Guatapé)
 const colombiaImages = [
     
@@ -1429,15 +1519,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Detectar qué página estamos cargando
     const currentPage = window.location.pathname.split('/').pop();
     // Permitir carrusel en index.php y index.html
-    if (currentPage === 'dominicana.html') {
+    if (currentPage === 'dominicana.html' || currentPage === 'dominicana.php') {
         initDominicanaCarousel();
-    } else if (currentPage === 'colombia.html') {
+    } else if (currentPage === 'colombia.html' || currentPage === 'colombia.php') {
         initColombiaCarousel();
+        initAntioquiaCarousel();
     } else if (currentPage === 'index.html' || currentPage === 'index.php' || currentPage === '') {
         initCarousel();
     } else if (currentPage === 'login.html' || currentPage === 'login.php') {
         initLogin();
-    } else if (currentPage === 'product-detail.html') {
+    } else if (currentPage === 'product-detail.html' || currentPage === 'product-detail.php') {
         initProductDetail();
     }
 });

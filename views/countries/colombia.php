@@ -51,15 +51,15 @@
 
     <!-- Destinos Principales -->
     <section id="destinos" class="destinos">
-        <div class="container">
+    <div class="container">
             <div class="section-header">
                 <h2>Destinos Imperdibles</h2>
                 <p>Explora la diversidad de Colombia</p>
             </div>
             <div class="destinos-grid">
                 <div class="destino-card">
-                    <div class="destino-image bogota">
-                        <i class="fas fa-city"></i>
+                    <div class="destino-image">
+                        <img src="/public/imagenes/destinos/colombia/bogota.png" alt="Bogotá">
                     </div>
                     <div class="destino-content">
                         <h3>Bogotá</h3>
@@ -73,8 +73,8 @@
                     </div>
                 </div>
                 <div class="destino-card">
-                    <div class="destino-image cartagena">
-                        <i class="fas fa-fort-awesome"></i>
+                    <div class="destino-image">
+                        <img src="/public/imagenes/destinos/colombia/cartagena.png" alt="Cartagena">
                     </div>
                     <div class="destino-content">
                         <h3>Cartagena</h3>
@@ -88,8 +88,8 @@
                     </div>
                 </div>
                 <div class="destino-card">
-                    <div class="destino-image medellin">
-                        <i class="fas fa-seedling"></i>
+                    <div class="destino-image">
+                        <img src="/public/imagenes/destinos/colombia/antioquia/medellin.png" alt="Medellín">
                     </div>
                     <div class="destino-content">
                         <h3>Medellín</h3>
@@ -103,8 +103,8 @@
                     </div>
                 </div>
                 <div class="destino-card">
-                    <div class="destino-image cali">
-                        <i class="fas fa-music"></i>
+                    <div class="destino-image">
+                        <img src="/public/imagenes/destinos/colombia/cali.png" alt="Cali">
                     </div>
                     <div class="destino-content">
                         <h3>Cali</h3>
@@ -118,7 +118,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+    </div>
     </section>
 
     <!-- Sección Especial Antioquia -->
@@ -128,18 +128,13 @@
                 <h2>Antioquia</h2>
                 <p>El corazón de Colombia, donde la tradición paisa se encuentra con la modernidad</p>
             </div>
-            <div class="antioquia-hero">
-                <div class="antioquia-content">
-                    <h3>La Tierra Paisa</h3>
-                    <p>Antioquia es mucho más que Medellín. Es una región llena de pueblos coloniales, paisajes montañosos, fincas cafeteras y una cultura única que define la identidad colombiana.</p>
-                </div>
-                <div class="antioquia-image">
-                    <div class="image-placeholder antioquia-placeholder">
-                        <i class="fas fa-mountain"></i>
-                        <p>Paisajes de Antioquia</p>
-                    </div>
-                </div>
+
+            <div class="antioquia-content">
+                <h3>La Tierra Paisa</h3>
+                <p>Antioquia es mucho más que Medellín. Es una región llena de pueblos coloniales, paisajes montañosos, fincas cafeteras y una cultura única que define la identidad colombiana.</p>
             </div>
+            <br>
+
             <div class="antioquia-destinos">
                 <h3>Destinos Antioqueños</h3>
                 <div class="antioquia-grid">
@@ -203,6 +198,21 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="antioquia-card">
+                        <div class="destino-image">
+                            <img src="/public/imagenes/destinos/colombia/antioquia/doradal.png" alt="Doradal">
+                        </div>
+                        <div class="antioquia-card-content">
+                            <h4>Doradal</h4>
+                            <p>Un destino de aventura y naturaleza, conocido por sus paisajes y actividades al aire libre.</p>
+                            <ul>
+                                <li>Parque Natural Arví</li>
+                                <li>Senderismo</li>
+                                <li>Santorini Antioqueño</li>
+                                <li>Peregrinaciones</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="cultura-paisa">
@@ -232,12 +242,6 @@
                                     <p>Bandeja paisa, arepa antioqueña, mondongo y otros platos tradicionales únicos</p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="cultura-paisa-image">
-                        <div class="image-placeholder cultura-paisa-placeholder">
-                            <i class="fas fa-coffee"></i>
-                            <p>Cultura y tradiciones paisas</p>
                         </div>
                     </div>
                 </div>
@@ -326,6 +330,16 @@
             </div>
         </div>
     </section>
+
+    <!-- Video Promocional -->
+    <div class="video-section" style="text-align:center; margin: 2rem 0;">
+        <iframe width="560" height="315"
+            src="https://www.youtube.com/embed/mn64ZdDpC6k"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+        </iframe>
+    </div>
 
     <!-- CTA Section -->
     <section class="cta-section">
