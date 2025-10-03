@@ -787,7 +787,7 @@ const antioquiaImages = [
     '/public/imagenes/destinos/colombia/antioquia/jardin.png',
     '/public/imagenes/destinos/colombia/antioquia/jerico.png',
     '/public/imagenes/destinos/colombia/antioquia/medellin.png',
-    '/public/imagenes/destinos/colombia/antioquia/santa_fe.png',
+    '/public/imagenes/destinos/colombia/antioquia/santa_fe.png'
 ];
 ];
 
