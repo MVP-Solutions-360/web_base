@@ -2,7 +2,7 @@
 let productos = JSON.parse(localStorage.getItem('productos')) || [];
 
 // Inicialización cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     initializeApp();
 });
 
@@ -24,7 +24,7 @@ function setupNavigation() {
 
     // Toggle del menú móvil
     if (hamburger) {
-        hamburger.addEventListener('click', function() {
+        hamburger.addEventListener('click', function () {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
             if (overlay) {
@@ -35,7 +35,7 @@ function setupNavigation() {
 
     // Cerrar menú al hacer clic en el overlay
     if (overlay) {
-        overlay.addEventListener('click', function() {
+        overlay.addEventListener('click', function () {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
             overlay.classList.remove('active');
@@ -44,7 +44,7 @@ function setupNavigation() {
 
     // Cerrar menú al hacer clic en un enlace
     navLinks.forEach(link => {
-        link.addEventListener('click', function() {
+        link.addEventListener('click', function () {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
             if (overlay) {
@@ -55,7 +55,7 @@ function setupNavigation() {
 
     // Scroll suave para enlaces internos
     navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
             if (href.startsWith('#')) {
                 e.preventDefault();
@@ -98,36 +98,36 @@ function setupForms() {
 // Manejo del formulario de contacto
 function handleContactForm(e) {
     e.preventDefault();
-    
+
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
-    
+
     // Validación
     if (!validateContactForm(data)) {
         return;
     }
-    
+
     // Crear mensaje para WhatsApp
     const whatsappMessage = createWhatsAppMessage(data);
-    
+
     // Redirigir a WhatsApp
     const whatsappUrl = `https://wa.me/573506852261?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappUrl, '_blank');
-    
+
     // Mostrar notificación
     showNotification('¡Redirigiendo a WhatsApp!', 'success');
-    
+
     // Resetear formulario
     e.target.reset();
 }
 
 // Crear mensaje formateado para WhatsApp
 function createWhatsAppMessage(data) {
-    const destinoText = data.destinoInteres ? 
+    const destinoText = data.destinoInteres ?
         (data.destinoInteres === 'republica-dominicana' ? 'República Dominicana' :
-         data.destinoInteres === 'antioquia' ? 'Antioquia, Colombia' :
-         data.destinoInteres === 'ambos' ? 'Ambos destinos' : 'No especificado') : 'No especificado';
-    
+            data.destinoInteres === 'antioquia' ? 'Antioquia, Colombia' :
+                data.destinoInteres === 'ambos' ? 'Ambos destinos' : 'No especificado') : 'No especificado';
+
     return `🌴 *Nuevo mensaje desde Wilrop Colombia Travel*
 
 👤 *Nombre:* ${data.nombre}
@@ -201,13 +201,13 @@ function handleProductoForm(e) {
 // Manejo del formulario de consulta
 function handleConsultaForm(e) {
     e.preventDefault();
-    
+
     const formData = new FormData(e.target);
     const filtros = Object.fromEntries(formData);
-    
+
     // Filtrar productos
     const productosFiltrados = filtrarProductos(filtros);
-    
+
     // Mostrar resultados
     mostrarResultadosConsulta(productosFiltrados);
 }
@@ -215,73 +215,73 @@ function handleConsultaForm(e) {
 // Validación del formulario de contacto
 function validateContactForm(data) {
     const errors = [];
-    
+
     if (!data.nombre || data.nombre.trim().length < 2) {
         errors.push('El nombre debe tener al menos 2 caracteres');
     }
-    
+
     if (!data.email || !isValidEmail(data.email)) {
         errors.push('Ingrese un email válido');
     }
-    
+
     if (!data.mensaje || data.mensaje.trim().length < 10) {
         errors.push('El mensaje debe tener al menos 10 caracteres');
     }
-    
+
     if (errors.length > 0) {
         showNotification(errors.join('<br>'), 'error');
         return false;
     }
-    
+
     return true;
 }
 
 // Validación del formulario de producto
 function validateProductoForm(data) {
     const errors = [];
-    
+
     if (!data.nombreProducto || data.nombreProducto.trim().length < 3) {
         errors.push('El nombre del producto debe tener al menos 3 caracteres');
     }
-    
+
     if (!data.destinoProducto) {
         errors.push('Seleccione un destino');
     }
-    
+
     if (!data.tipoProducto) {
         errors.push('Seleccione un tipo de producto');
     }
-    
+
     if (!data.precioProducto || parseFloat(data.precioProducto) <= 0) {
         errors.push('El precio debe ser mayor a 0');
     }
-    
+
     if (!data.duracionProducto || parseInt(data.duracionProducto) < 1) {
         errors.push('La duración debe ser al menos 1 día');
     }
-    
+
     if (!data.descripcionProducto || data.descripcionProducto.trim().length < 10) {
         errors.push('La descripción debe tener al menos 10 caracteres');
     }
-    
+
     if (errors.length > 0) {
         showNotification(errors.join('<br>'), 'error');
         return false;
     }
-    
+
     return true;
 }
 
 // Validación en tiempo real
 function setupRealTimeValidation() {
     const inputs = document.querySelectorAll('input, select, textarea');
-    
+
     inputs.forEach(input => {
-        input.addEventListener('blur', function() {
+        input.addEventListener('blur', function () {
             validateField(this);
         });
-        
-        input.addEventListener('input', function() {
+
+        input.addEventListener('input', function () {
             clearFieldError(this);
         });
     });
@@ -292,7 +292,7 @@ function validateField(field) {
     const value = field.value.trim();
     let isValid = true;
     let message = '';
-    
+
     // Validaciones específicas por tipo de campo
     switch (field.type) {
         case 'email':
@@ -314,13 +314,13 @@ function validateField(field) {
             }
             break;
     }
-    
+
     // Validaciones por campo requerido
     if (field.hasAttribute('required') && !value) {
         isValid = false;
         message = 'Este campo es obligatorio';
     }
-    
+
     // Validaciones por longitud mínima
     if (value && field.hasAttribute('minlength')) {
         const minLength = parseInt(field.getAttribute('minlength'));
@@ -329,36 +329,36 @@ function validateField(field) {
             message = `Mínimo ${minLength} caracteres`;
         }
     }
-    
+
     if (!isValid) {
         showFieldError(field, message);
     } else {
         clearFieldError(field);
     }
-    
+
     return isValid;
 }
 
 // Mostrar error en campo
 function showFieldError(field, message) {
     clearFieldError(field);
-    
+
     field.style.borderColor = '#e74c3c';
-    
+
     const errorDiv = document.createElement('div');
     errorDiv.className = 'field-error';
     errorDiv.textContent = message;
     errorDiv.style.color = '#e74c3c';
     errorDiv.style.fontSize = '0.875rem';
     errorDiv.style.marginTop = '0.25rem';
-    
+
     field.parentNode.appendChild(errorDiv);
 }
 
 // Limpiar error de campo
 function clearFieldError(field) {
     field.style.borderColor = '';
-    
+
     const existingError = field.parentNode.querySelector('.field-error');
     if (existingError) {
         existingError.remove();
@@ -372,22 +372,22 @@ function filtrarProductos(filtros) {
         if (filtros.filtroDestino && producto.destino !== filtros.filtroDestino) {
             return false;
         }
-        
+
         // Filtro por tipo
         if (filtros.filtroTipo && producto.tipo !== filtros.filtroTipo) {
             return false;
         }
-        
+
         // Filtro por precio mínimo
         if (filtros.precioMin && producto.precio < parseFloat(filtros.precioMin)) {
             return false;
         }
-        
+
         // Filtro por precio máximo
         if (filtros.precioMax && producto.precio > parseFloat(filtros.precioMax)) {
             return false;
         }
-        
+
         return true;
     });
 }
@@ -395,14 +395,14 @@ function filtrarProductos(filtros) {
 // Mostrar resultados de consulta
 function mostrarResultadosConsulta(productos) {
     const resultadosDiv = document.getElementById('resultadosConsulta') || crearResultadosDiv();
-    
+
     if (productos.length === 0) {
         resultadosDiv.innerHTML = '<p>No se encontraron productos con los filtros seleccionados.</p>';
         return;
     }
-    
+
     let html = '<h4>Productos encontrados:</h4><div class="productos-grid">';
-    
+
     productos.forEach(producto => {
         html += `
             <div class="producto-card">
@@ -417,7 +417,7 @@ function mostrarResultadosConsulta(productos) {
             </div>
         `;
     });
-    
+
     html += '</div>';
     resultadosDiv.innerHTML = html;
 }
@@ -431,10 +431,10 @@ function crearResultadosDiv() {
     div.style.padding = '2rem';
     div.style.background = '#f8f9fa';
     div.style.borderRadius = '10px';
-    
+
     const formContainer = document.querySelector('#consultaForm').closest('.form-container');
     formContainer.appendChild(div);
-    
+
     return div;
 }
 
@@ -444,7 +444,7 @@ function eliminarProducto(id) {
         productos = productos.filter(p => p.id !== id);
         saveProductos();
         showNotification('Producto eliminado exitosamente', 'success');
-        
+
         // Actualizar resultados si están visibles
         const consultaForm = document.getElementById('consultaForm');
         if (consultaForm) {
@@ -460,7 +460,7 @@ function eliminarProducto(id) {
 function setupScrollEffects() {
     // Header transparente al hacer scroll
     const header = document.querySelector('.header');
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         if (!header) {
             return;
         }
@@ -470,14 +470,14 @@ function setupScrollEffects() {
             header.style.background = 'rgba(255, 255, 255, 0.95)';
         }
     });
-    
+
     // Animaciones al hacer scroll
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
-    
-    const observer = new IntersectionObserver(function(entries) {
+
+    const observer = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
@@ -485,7 +485,7 @@ function setupScrollEffects() {
             }
         });
     }, observerOptions);
-    
+
     // Observar elementos para animación
     const animatedElements = document.querySelectorAll('.destino-card, .servicio-card, .form-container');
     animatedElements.forEach(el => {
@@ -532,11 +532,11 @@ function showNotification(message, type = 'info') {
     if (existingNotification) {
         existingNotification.remove();
     }
-    
+
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.innerHTML = message;
-    
+
     // Estilos de la notificación
     Object.assign(notification.style, {
         position: 'fixed',
@@ -552,7 +552,7 @@ function showNotification(message, type = 'info') {
         transform: 'translateX(100%)',
         transition: 'transform 0.3s ease'
     });
-    
+
     // Colores según el tipo
     const colors = {
         success: '#27ae60',
@@ -560,16 +560,16 @@ function showNotification(message, type = 'info') {
         warning: '#f39c12',
         info: '#3498db'
     };
-    
+
     notification.style.background = colors[type] || colors.info;
-    
+
     document.body.appendChild(notification);
-    
+
     // Animar entrada
     setTimeout(() => {
         notification.style.transform = 'translateX(0)';
     }, 100);
-    
+
     // Auto-remover después de 5 segundos
     setTimeout(() => {
         notification.style.transform = 'translateX(100%)';
@@ -605,14 +605,14 @@ function loadProductos() {
 // Función para exportar productos (útil para administración)
 function exportarProductos() {
     const dataStr = JSON.stringify(productos, null, 2);
-    const dataBlob = new Blob([dataStr], {type: 'application/json'});
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
     const url = URL.createObjectURL(dataBlob);
-    
+
     const link = document.createElement('a');
     link.href = url;
     link.download = 'productos-wilrop.json';
     link.click();
-    
+
     URL.revokeObjectURL(url);
 }
 
@@ -620,9 +620,9 @@ function exportarProductos() {
 function importarProductos(event) {
     const file = event.target.files[0];
     if (!file) return;
-    
+
     const reader = new FileReader();
-    reader.onload = function(e) {
+    reader.onload = function (e) {
         try {
             const importedProductos = JSON.parse(e.target.result);
             if (Array.isArray(importedProductos)) {
@@ -665,36 +665,31 @@ const dominicanaImages = [
     '/public/imagenes/destinos/republica_dominicana/punta_cana/punta_cana3.png',
     '/public/imagenes/destinos/republica_dominicana/punta_cana/punta_cana4.png'
 ];
+
+function createDominicanaCarouselSlides() {
     const carousel = document.getElementById('dominicanaCarousel');
     const indicatorsContainer = document.getElementById('dominicanaIndicators');
-    
     if (!carousel || !indicatorsContainer) return;
-    
     // Limpiar contenido existente
     carousel.innerHTML = '';
     indicatorsContainer.innerHTML = '';
-    
     // Crear slides
     dominicanaImages.forEach((imagePath, index) => {
         // Crear slide
         const slide = document.createElement('div');
         slide.className = `carousel-slide ${index === 0 ? 'active' : ''}`;
         slide.style.backgroundImage = `url('${imagePath}')`;
-        
         // Crear overlay
         const overlay = document.createElement('div');
         overlay.className = 'carousel-overlay';
         slide.appendChild(overlay);
-        
         carousel.appendChild(slide);
-        
         // Crear indicador
         const indicator = document.createElement('span');
         indicator.className = `indicator ${index === 0 ? 'active' : ''}`;
         indicator.onclick = () => currentSlideDom(index + 1);
         indicatorsContainer.appendChild(indicator);
     });
-    
     // Actualizar referencias
     domSlides = document.querySelectorAll('#dominicanaCarousel .carousel-slide');
     domIndicators = document.querySelectorAll('#dominicanaIndicators .indicator');
@@ -703,12 +698,12 @@ const dominicanaImages = [
 // Inicializar carrusel de República Dominicana
 function initDominicanaCarousel() {
     createDominicanaCarouselSlides();
-    
+
     if (domSlides.length === 0) return;
-    
+
     showSlideDom(0);
     startAutoSlideDom();
-    
+
     // Pausar auto-slide al hacer hover
     const carousel = document.querySelector('#dominicanaCarousel');
     if (carousel) {
@@ -722,7 +717,7 @@ function showSlideDom(index) {
     // Remover clase active de todos los slides e indicadores
     domSlides.forEach(slide => slide.classList.remove('active'));
     domIndicators.forEach(indicator => indicator.classList.remove('active'));
-    
+
     // Agregar clase active al slide e indicador actual
     if (domSlides[index]) {
         domSlides[index].classList.add('active');
@@ -735,13 +730,13 @@ function showSlideDom(index) {
 // Cambiar slide de República Dominicana
 function changeSlideDom(direction) {
     currentDomSlideIndex += direction;
-    
+
     if (currentDomSlideIndex >= domSlides.length) {
         currentDomSlideIndex = 0;
     } else if (currentDomSlideIndex < 0) {
         currentDomSlideIndex = domSlides.length - 1;
     }
-    
+
     showSlideDom(currentDomSlideIndex);
 }
 
@@ -789,7 +784,7 @@ const antioquiaImages = [
     '/public/imagenes/destinos/colombia/antioquia/medellin.png',
     '/public/imagenes/destinos/colombia/antioquia/santa_fe.png'
 ];
-];
+
 
 function createAntioquiaCarouselSlides() {
     const carousel = document.getElementById('antioquiaCarousel');
@@ -861,7 +856,7 @@ function stopAutoSlideAntioquia() {
 
 // Lista de imágenes de Colombia (Guatapé)
 const colombiaImages = [
-    
+
     '/public/imagenes/destinos/colombia/bogota.png',
     '/public/imagenes/destinos/colombia/cartagena.png',
     '/public/imagenes/destinos/colombia/antioquia/medellin.png',
@@ -872,34 +867,34 @@ const colombiaImages = [
 function createColombiaCarouselSlides() {
     const carousel = document.getElementById('colombiaCarousel');
     const indicatorsContainer = document.getElementById('colombiaIndicators');
-    
+
     if (!carousel || !indicatorsContainer) return;
-    
+
     // Limpiar contenido existente
     carousel.innerHTML = '';
     indicatorsContainer.innerHTML = '';
-    
+
     // Crear slides
     colombiaImages.forEach((imagePath, index) => {
         // Crear slide
         const slide = document.createElement('div');
         slide.className = `carousel-slide ${index === 0 ? 'active' : ''}`;
         slide.style.backgroundImage = `url('${imagePath}')`;
-        
+
         // Crear overlay
         const overlay = document.createElement('div');
         overlay.className = 'carousel-overlay';
         slide.appendChild(overlay);
-        
+
         carousel.appendChild(slide);
-        
+
         // Crear indicador
         const indicator = document.createElement('span');
         indicator.className = `indicator ${index === 0 ? 'active' : ''}`;
         indicator.onclick = () => currentSlideCol(index + 1);
         indicatorsContainer.appendChild(indicator);
     });
-    
+
     // Actualizar referencias
     colSlides = document.querySelectorAll('#colombiaCarousel .carousel-slide');
     colIndicators = document.querySelectorAll('#colombiaIndicators .indicator');
@@ -908,12 +903,12 @@ function createColombiaCarouselSlides() {
 // Inicializar carrusel de Colombia
 function initColombiaCarousel() {
     createColombiaCarouselSlides();
-    
+
     if (colSlides.length === 0) return;
-    
+
     showSlideCol(0);
     startAutoSlideCol();
-    
+
     // Pausar auto-slide al hacer hover
     const carousel = document.querySelector('#colombiaCarousel');
     if (carousel) {
@@ -927,7 +922,7 @@ function showSlideCol(index) {
     // Remover clase active de todos los slides e indicadores
     colSlides.forEach(slide => slide.classList.remove('active'));
     colIndicators.forEach(indicator => indicator.classList.remove('active'));
-    
+
     // Agregar clase active al slide e indicador actual
     if (colSlides[index]) {
         colSlides[index].classList.add('active');
@@ -940,13 +935,13 @@ function showSlideCol(index) {
 // Cambiar slide de Colombia
 function changeSlideCol(direction) {
     currentColSlideIndex += direction;
-    
+
     if (currentColSlideIndex >= colSlides.length) {
         currentColSlideIndex = 0;
     } else if (currentColSlideIndex < 0) {
         currentColSlideIndex = colSlides.length - 1;
     }
-    
+
     showSlideCol(currentColSlideIndex);
 }
 
@@ -974,15 +969,15 @@ function initLogin() {
     if (loginForm) {
         loginForm.addEventListener('submit', handleLogin);
     }
-    
+
     // Inicializar botones de redes sociales
     const googleBtn = document.querySelector('.btn-google');
     const facebookBtn = document.querySelector('.btn-facebook');
-    
+
     if (googleBtn) {
         googleBtn.addEventListener('click', handleGoogleLogin);
     }
-    
+
     if (facebookBtn) {
         facebookBtn.addEventListener('click', handleFacebookLogin);
     }
@@ -1025,7 +1020,7 @@ function isValidEmail(email) {
 function togglePassword() {
     const passwordInput = document.getElementById('password');
     const toggleIcon = document.getElementById('passwordToggleIcon');
-    
+
     if (passwordInput.type === 'password') {
         passwordInput.type = 'text';
         toggleIcon.classList.remove('fa-eye');
@@ -1078,14 +1073,14 @@ function updateNavbarForLoggedUser(userData) {
 // Mostrar menú de usuario
 function showUserMenu(e) {
     e.preventDefault();
-    
+
     // Crear menú desplegable
     const existingMenu = document.querySelector('.user-menu');
     if (existingMenu) {
         existingMenu.remove();
         return;
     }
-    
+
     const userMenu = document.createElement('div');
     userMenu.className = 'user-menu';
     userMenu.innerHTML = `
@@ -1115,12 +1110,12 @@ function showUserMenu(e) {
             </div>
         </div>
     `;
-    
+
     // Posicionar el menú
     const loginBtn = document.querySelector('.login-btn');
     loginBtn.style.position = 'relative';
     loginBtn.appendChild(userMenu);
-    
+
     // Cerrar menú al hacer clic fuera
     setTimeout(() => {
         document.addEventListener('click', function closeMenu(e) {
@@ -1136,9 +1131,9 @@ function showUserMenu(e) {
 function logout() {
     localStorage.removeItem('userSession');
     sessionStorage.removeItem('userSession');
-    
+
     showNotification('Sesión cerrada correctamente', 'success');
-    
+
     setTimeout(() => {
         window.location.reload();
     }, 1000);
@@ -1148,16 +1143,16 @@ function logout() {
 function initProductDetail() {
     // Cargar datos del producto desde URL o localStorage
     loadProductData();
-    
+
     // Configurar fecha mínima para el input de fecha
     setupDateInput();
-    
+
     // Calcular precio inicial
     calculateTotal();
-    
+
     // Inicializar video
     initVideo();
-    
+
     // Agregar event listeners
     setupProductDetailEvents();
 }
@@ -1167,12 +1162,12 @@ function loadProductData() {
     // Obtener ID del producto desde la URL
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get('id');
-    
+
     if (productId) {
         // Buscar producto en localStorage
         const productos = JSON.parse(localStorage.getItem('productos')) || [];
         const producto = productos.find(p => p.id == productId);
-        
+
         if (producto) {
             updateProductDisplay(producto);
         } else {
@@ -1189,25 +1184,25 @@ function updateProductDisplay(producto) {
     if (breadcrumb) {
         breadcrumb.textContent = producto.nombre;
     }
-    
+
     // Actualizar título
     const title = document.getElementById('productTitle');
     if (title) {
         title.textContent = producto.nombre;
     }
-    
+
     // Actualizar descripción
     const description = document.getElementById('productDescription');
     if (description) {
         description.textContent = producto.descripcion || 'Descripción del producto no disponible.';
     }
-    
+
     // Actualizar precio
     const price = document.getElementById('productPrice');
     if (price) {
         price.textContent = producto.precio.toLocaleString();
     }
-    
+
     // Actualizar badge según el tipo
     const badge = document.getElementById('productBadge');
     if (badge) {
@@ -1219,7 +1214,7 @@ function updateProductDisplay(producto) {
         };
         badge.textContent = badgeText[producto.tipo] || 'Paquete Premium';
     }
-    
+
     // Recalcular total
     calculateTotal();
 }
@@ -1232,7 +1227,7 @@ function setupDateInput() {
         const tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 1);
         dateInput.min = tomorrow.toISOString().split('T')[0];
-        
+
         // Establecer fecha por defecto en 7 días
         const defaultDate = new Date();
         defaultDate.setDate(defaultDate.getDate() + 7);
@@ -1246,11 +1241,11 @@ function changeQuantity(delta) {
     if (quantityInput) {
         let currentValue = parseInt(quantityInput.value);
         let newValue = currentValue + delta;
-        
+
         // Limitar entre 1 y 10
         newValue = Math.max(1, Math.min(10, newValue));
         quantityInput.value = newValue;
-        
+
         // Recalcular total
         calculateTotal();
     }
@@ -1261,29 +1256,29 @@ function calculateTotal() {
     const priceElement = document.getElementById('productPrice');
     const quantityElement = document.getElementById('quantity');
     const roomTypeElement = document.getElementById('roomType');
-    
+
     if (priceElement && quantityElement && roomTypeElement) {
         const basePrice = parseInt(priceElement.textContent.replace(/[^\d]/g, ''));
         const quantity = parseInt(quantityElement.value);
         const roomType = roomTypeElement.value;
-        
+
         // Multiplicadores por tipo de habitación
         const roomMultipliers = {
             'standard': 1.0,
             'superior': 1.2,
             'deluxe': 1.5
         };
-        
+
         const multiplier = roomMultipliers[roomType] || 1.0;
         const subtotal = basePrice * quantity * multiplier;
         const taxes = subtotal * 0.1; // 10% de impuestos
         const total = subtotal + taxes;
-        
+
         // Actualizar elementos
         const subtotalElement = document.getElementById('subtotal');
         const taxesElement = document.getElementById('taxes');
         const totalElement = document.getElementById('totalPrice');
-        
+
         if (subtotalElement) subtotalElement.textContent = `$${subtotal.toLocaleString()}`;
         if (taxesElement) taxesElement.textContent = `$${taxes.toLocaleString()}`;
         if (totalElement) totalElement.textContent = `$${total.toLocaleString()}`;
@@ -1297,20 +1292,20 @@ function setupProductDetailEvents() {
     if (quantityInput) {
         quantityInput.addEventListener('change', calculateTotal);
     }
-    
+
     // Cambio en tipo de habitación
     const roomTypeSelect = document.getElementById('roomType');
     if (roomTypeSelect) {
         roomTypeSelect.addEventListener('change', calculateTotal);
     }
-    
+
     // Cambio en fecha
     const dateInput = document.getElementById('departureDate');
     if (dateInput) {
-        dateInput.addEventListener('change', function() {
+        dateInput.addEventListener('change', function () {
             const selectedDate = new Date(this.value);
             const today = new Date();
-            
+
             if (selectedDate <= today) {
                 showNotification('Por favor selecciona una fecha futura', 'warning');
                 this.value = '';
@@ -1324,18 +1319,18 @@ function initVideo() {
     const video = document.querySelector('#videoPlayer video');
     if (video) {
         // Configurar eventos del video
-        video.addEventListener('loadstart', function() {
+        video.addEventListener('loadstart', function () {
             console.log('Iniciando carga del video...');
         });
-        
-        video.addEventListener('canplay', function() {
+
+        video.addEventListener('canplay', function () {
             console.log('Video listo para reproducir');
         });
-        
-        video.addEventListener('error', function() {
+
+        video.addEventListener('error', function () {
             showNotification('Error al cargar el video', 'error');
         });
-        
+
         // Auto-play opcional (descomentado si quieres que se reproduzca automáticamente)
         // video.play();
     }
@@ -1346,18 +1341,18 @@ function proceedToBooking() {
     const dateInput = document.getElementById('departureDate');
     const quantityInput = document.getElementById('quantity');
     const roomTypeSelect = document.getElementById('roomType');
-    
+
     // Validaciones
     if (!dateInput.value) {
         showNotification('Por favor selecciona una fecha de salida', 'error');
         return;
     }
-    
+
     if (!quantityInput.value || quantityInput.value < 1) {
         showNotification('Por favor selecciona el número de personas', 'error');
         return;
     }
-    
+
     // Recopilar datos de la reserva
     const bookingData = {
         productId: new URLSearchParams(window.location.search).get('id'),
@@ -1367,14 +1362,14 @@ function proceedToBooking() {
         total: document.getElementById('totalPrice').textContent,
         timestamp: new Date().toISOString()
     };
-    
+
     // Guardar en localStorage (en un proyecto real, esto se enviaría al servidor)
     const bookings = JSON.parse(localStorage.getItem('bookings')) || [];
     bookings.push(bookingData);
     localStorage.setItem('bookings', JSON.stringify(bookings));
-    
+
     showNotification('¡Reserva realizada con éxito! Te contactaremos pronto.', 'success');
-    
+
     // Redirigir después de 2 segundos
     setTimeout(() => {
         window.location.href = 'products.html';
@@ -1412,34 +1407,34 @@ const carouselImages = [
 function createCarouselSlides() {
     const carousel = document.getElementById('heroCarousel');
     const indicatorsContainer = document.getElementById('carouselIndicators');
-    
+
     if (!carousel || !indicatorsContainer) return;
-    
+
     // Limpiar contenido existente
     carousel.innerHTML = '';
     indicatorsContainer.innerHTML = '';
-    
+
     // Crear slides
     carouselImages.forEach((imagePath, index) => {
         // Crear slide
         const slide = document.createElement('div');
         slide.className = `carousel-slide ${index === 0 ? 'active' : ''}`;
         slide.style.backgroundImage = `url('${imagePath}')`;
-        
+
         // Crear overlay
         const overlay = document.createElement('div');
         overlay.className = 'carousel-overlay';
         slide.appendChild(overlay);
-        
+
         carousel.appendChild(slide);
-        
+
         // Crear indicador
         const indicator = document.createElement('span');
         indicator.className = `indicator ${index === 0 ? 'active' : ''}`;
         indicator.onclick = () => currentSlide(index + 1);
         indicatorsContainer.appendChild(indicator);
     });
-    
+
     // Actualizar referencias
     slides = document.querySelectorAll('.carousel-slide');
     indicators = document.querySelectorAll('.indicator');
@@ -1448,12 +1443,12 @@ function createCarouselSlides() {
 // Inicializar carrusel
 function initCarousel() {
     createCarouselSlides();
-    
+
     if (slides.length === 0) return;
-    
+
     showSlide(0);
     startAutoSlide();
-    
+
     // Pausar auto-slide al hacer hover
     const carousel = document.querySelector('.hero-carousel');
     if (carousel) {
@@ -1467,7 +1462,7 @@ function showSlide(index) {
     // Remover clase active de todos los slides e indicadores
     slides.forEach(slide => slide.classList.remove('active'));
     indicators.forEach(indicator => indicator.classList.remove('active'));
-    
+
     // Agregar clase active al slide e indicador actual
     if (slides[index]) {
         slides[index].classList.add('active');
@@ -1475,20 +1470,20 @@ function showSlide(index) {
     if (indicators[index]) {
         indicators[index].classList.add('active');
     }
-    
+
     currentSlideIndex = index;
 }
 
 // Cambiar slide (siguiente/anterior)
 function changeSlide(direction) {
     let newIndex = currentSlideIndex + direction;
-    
+
     if (newIndex >= slides.length) {
         newIndex = 0;
     } else if (newIndex < 0) {
         newIndex = slides.length - 1;
     }
-    
+
     showSlide(newIndex);
 }
 
@@ -1512,7 +1507,7 @@ function stopAutoSlide() {
 }
 
 // Inicializar carrusel cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Detectar qué página estamos cargando
     const currentPage = window.location.pathname.split('/').pop();
     // Permitir carrusel en index.php y index.html
@@ -1536,7 +1531,7 @@ function limpiarProductos() {
         productos = [];
         saveProductos();
         showNotification('Todos los productos han sido eliminados', 'success');
-        
+
         // Si estamos en products.html, recargar la página
         if (window.location.pathname.includes('products.html')) {
             setTimeout(() => {
@@ -1570,7 +1565,7 @@ function eliminarProductoModal() {
             saveProductos();
             showNotification('Producto eliminado exitosamente', 'success');
             cerrarModal();
-            
+
             // Recargar productos si estamos en products.html
             if (window.location.pathname.includes('products.html')) {
                 setTimeout(() => {
