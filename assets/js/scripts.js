@@ -658,16 +658,13 @@ let domSlideInterval;
 
 // Lista de imágenes de República Dominicana
 const dominicanaImages = [
-    '/public/imagenes/destinos/index/pareja_playa1.png',
-    '/public/imagenes/destinos/index/pareja_playa2.png',
-    '/public/imagenes/destinos/index/punta_cana1.png',
-    '/public/imagenes/destinos/index/punta_cana2.png',
-    '/public/imagenes/destinos/index/punta_cana3.png',
-    '/public/imagenes/destinos/index/punta_cana4.png'
+    '/public/imagenes/destinos/republica_dominicana/punta_cana/pareja_playa1.png',
+    '/public/imagenes/destinos/republica_dominicana/punta_cana/pareja_playa2.png',
+    '/public/imagenes/destinos/republica_dominicana/punta_cana/punta_cana1.png',
+    '/public/imagenes/destinos/republica_dominicana/punta_cana/punta_cana2.png',
+    '/public/imagenes/destinos/republica_dominicana/punta_cana/punta_cana3.png',
+    '/public/imagenes/destinos/republica_dominicana/punta_cana/punta_cana4.png'
 ];
-
-// Crear slides dinámicamente para República Dominicana
-function createDominicanaCarouselSlides() {
     const carousel = document.getElementById('dominicanaCarousel');
     const indicatorsContainer = document.getElementById('dominicanaIndicators');
     
@@ -865,10 +862,10 @@ function stopAutoSlideAntioquia() {
 // Lista de imágenes de Colombia (Guatapé)
 const colombiaImages = [
     
-    '/public/imagenes/destinos/Colombia/antioquia/guatape/guatape1.png',
-    '/public/imagenes/destinos/Colombia/antioquia/guatape/guatape2.png',
-    '/public/imagenes/destinos/Colombia/antioquia/guatape/guatape3.png',
-    '/public/imagenes/destinos/Colombia/antioquia/guatape/penol1.png'
+    '/public/imagenes/destinos/colombia/bogota.png',
+    '/public/imagenes/destinos/colombia/cartagena.png',
+    '/public/imagenes/destinos/colombia/antioquia/medellin.png',
+    '/public/imagenes/destinos/colombia/cali.png'
 ];
 
 // Crear slides dinámicamente para Colombia
