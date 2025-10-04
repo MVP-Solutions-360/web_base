@@ -218,7 +218,7 @@
             <div class="cultura-paisa">
                 <h3>Cultura Paisa</h3>
                 <div class="cultura-paisa-content">
-                    <div class="cultura-paisa-text">
+                    <div class="antioquia-card-content">
                         <p>La cultura paisa es única en Colombia. Conocida por su hospitalidad, emprendimiento y tradiciones, Antioquia ha dado al país algunos de sus personajes más importantes y ha desarrollado una identidad cultural distintiva.</p>
                         <div class="cultura-highlights">
                             <div class="highlight">
