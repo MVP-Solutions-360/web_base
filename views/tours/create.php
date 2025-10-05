@@ -1,5 +1,5 @@
 <!-- Formulario para crear tour -->
-<form method="POST" action="/tours/store">
+<form method="POST" action="/routes/web.php?url=tours/store">
     <label>Nombre del tour:</label>
     <input type="text" name="name" required>
     <label>Paquete:</label>

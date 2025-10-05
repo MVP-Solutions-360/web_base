@@ -8,9 +8,9 @@
             <div class="footer-section">
                 <h4>Destinos</h4>
                 <ul>
-                    <li><a href="dominicana.php">República Dominicana</a></li>
-                    <li><a href="colombia.php">Colombia</a></li>
-                    <li><a href="colombia.php#antioquia">Antioquia</a></li>
+                    <li><a href="/views/countries/dominicana.php">República Dominicana</a></li>
+                    <li><a href="/views/countries/colombia.php">Colombia</a></li>
+                    <li><a href="/views/countries/colombia.php#antioquia">Antioquia</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -24,12 +24,13 @@
             </div>
             <div class="footer-section">
                 <h4>Contacto</h4>
-                <p><i class="fas fa-phone"></i> +1 (809) 123-4567</p>
+                <p><i class="fas fa-phone"></i> +1 (829) 794-9960</p>
                 <p><i class="fas fa-envelope"></i> info@wilropcolombia.com</p>
             </div>
         </div>
         <div class="footer-bottom">
             <p>&copy; 2025 Wilrop Colombia Travel. Todos los derechos reservados.</p>
+            <p>Sitio web desarrollado por <a href="https://www.mvpsolutions365.com" class="text-white" target="_blank"> mvpsolutions365.com</a>.</p>
         </div>
     </div>
 </footer>

@@ -1,8 +1,5 @@
-
 <?php
-if (!isset($error)) {
-    $error = '';
-}
+if (!isset($error)) { $error = ''; }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -24,33 +21,38 @@ if (!isset($error)) {
                         <h2>Crear País</h2>
                         <p>Agrega un nuevo país al sistema</p>
                     </div>
-                    <form class="login-form" method="POST" action="?controller=country&action=store">
+
+                    <form id="countryCreateForm" class="login-form" method="POST" action="/routes/web.php?url=countries/store" novalidate>
                         <?php if (!empty($error)): ?>
                             <div class="alert alert-danger">
                                 <i class="fas fa-exclamation-triangle"></i>
                                 <?php echo $error; ?>
                             </div>
                         <?php endif; ?>
+
                         <div class="form-group">
                             <label for="pais">Nombre del país</label>
                             <div class="input-group">
                                 <i class="fas fa-flag"></i>
-                                <input type="text" id="pais" name="pais" maxlength="100" required placeholder="Ejemplo: Colombia">
+                                <input type="text" id="pais" name="pais" minlength="3" maxlength="100" required placeholder="Ejemplo: Colombia">
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label for="descripcion">Descripción</label>
                             <div class="input-group">
                                 <i class="fas fa-align-left"></i>
-                                <textarea id="descripcion" name="descripcion" rows="3" placeholder="Descripción del país..."></textarea>
+                                <textarea id="descripcion" name="descripcion" rows="3" minlength="3" placeholder="Descripción del país..."></textarea>
                             </div>
                         </div>
+
                         <button type="submit" class="btn btn-primary btn-full">
                             <i class="fas fa-save"></i>
                             Guardar País
                         </button>
                     </form>
                 </div>
+
                 <div class="login-image">
                     <div class="login-bg">
                         <div class="login-overlay"></div>
@@ -63,6 +65,42 @@ if (!isset($error)) {
             </div>
         </div>
     </section>
+
     <script src="/assets/js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        (function(){
+            var errorMsg = <?php echo json_encode($error ?? ''); ?>;
+            if (errorMsg) {
+                if (window.Swal) {
+                    Swal.fire({ icon:'error', title:'Errores de validación', html: errorMsg });
+                } else {
+                    alert(errorMsg.replace(/<br\s*\/?>(\r?\n)?/g, "\n"));
+                }
+            }
+        })();
+    </script>
+    <script>
+        (function(){
+            const form = document.getElementById('countryCreateForm');
+            if (!form) return;
+            form.addEventListener('submit', function(e){
+                const pais = form.pais.value.trim();
+                const desc = (form.descripcion.value || '').trim();
+                const errors = [];
+                if (pais.length < 3) errors.push('El nombre del país debe tener al menos 3 caracteres');
+                if (pais.length > 100) errors.push('El nombre del país no puede exceder 100 caracteres');
+                if (desc && desc.length < 3) errors.push('La descripción es muy corta');
+                if (errors.length) {
+                    e.preventDefault();
+                    if (typeof showNotification === 'function') {
+                        showNotification(errors.join('\n'), 'error');
+                    } else {
+                        alert(errors.join('\n'));
+                    }
+                }
+            });
+        })();
+    </script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!-- Formulario para crear paquete -->
-<form method="POST" action="/packages/store">
+<form method="POST" action="/routes/web.php?url=packages/store">
     <label>Nombre del paquete:</label>
     <input type="text" name="name" required>
     <label>Ciudad:</label>

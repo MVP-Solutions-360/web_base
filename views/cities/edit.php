@@ -1,5 +1,5 @@
 <!-- Formulario para editar ciudad -->
-<form method="POST" action="/cities/update">
+<form method="POST" action="/routes/web.php?url=cities/update">
     <label>Nombre de la ciudad:</label>
     <input type="text" name="name" value="<?= $city['name'] ?>" required>
     <label>País:</label>

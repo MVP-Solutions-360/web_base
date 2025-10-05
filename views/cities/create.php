@@ -1,5 +1,5 @@
 <!-- Formulario para crear ciudad -->
-<form method="POST" action="/cities/store">
+<form method="POST" action="/routes/web.php?url=cities/store">
     <label>Nombre de la ciudad:</label>
     <input type="text" name="name" required>
     <label>País:</label>

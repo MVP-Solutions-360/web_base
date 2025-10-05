@@ -20,7 +20,7 @@ class AuthController {
                     $_SESSION['correo'] = $user['email'];
                     $_SESSION['usuario'] = $user['email'];
                     if ($user['id'] == 1) {
-                        header('Location: /admin');
+                        header('Location: /routes/web.php?url=admin');
                     } else {
                         header('Location: /index.php');
                     }

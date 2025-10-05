@@ -1,0 +1,22 @@
+<?php
+class CountryController {
+    public static function index() {
+        // ...listar países...
+    }
+    public static function create() {
+        // ...mostrar formulario de creación...
+    }
+    public static function store($data) {
+        // ...guardar país...
+    }
+    public static function edit($id) {
+        // ...mostrar formulario de edición...
+    }
+    public static function update($id, $data) {
+        // ...actualizar país...
+    }
+    public static function delete($id) {
+        // ...eliminar país...
+    }
+}
+

@@ -13,11 +13,23 @@
                 <li><a href="/index.php" class="nav-link">Inicio</a></li>
                 <li><a href="/views/countries/dominicana.php" class="nav-link">República Dominicana</a></li>
                 <li><a href="/views/countries/colombia.php" class="nav-link">Colombia</a></li>
-                <li><a href="/index.php#servicios" class="nav-link">Servicios</a></li>
-                <li><a href="/products.html" class="nav-link">Productos</a></li>
-                <li><a href="/src/admin/admin.php" class="nav-link">Admin</a></li>
                 <li><a href="/index.php#contacto" class="nav-link">Contacto</a></li>
-                <li><a href="/views/auth/login.php" class="nav-link login-btn active">Iniciar Sesión</a></li>
+                <?php
+                    if (session_status() !== PHP_SESSION_ACTIVE) {
+                        session_start();
+                    }
+                    if (!empty($_SESSION['active'])): 
+                ?>
+                    <li><a href="/routes/web.php?url=admin" class="nav-link">Admin</a></li>
+                    <li class="nav-user"><span class="nav-link">Hola, <?php echo htmlspecialchars($_SESSION['nombre'] ?? 'Usuario'); ?></span></li>
+                    <li>
+                        <a href="/routes/web.php?url=logout" class="nav-link login-btn">Cerrar Sesión</a>
+                    </li>
+                <?php else: ?>
+                    <li>
+                        <a href="/views/auth/login.php" class="nav-link login-btn active">Iniciar Sesión</a>
+                    </li>
+                <?php endif; ?>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
