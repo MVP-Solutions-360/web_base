@@ -18,6 +18,21 @@ class CountryController {
         include __DIR__ . '/../views/countries/list.php';
     }
 
+    public static function show($id) {
+        require_once __DIR__ . '/../config/database.php';
+        $country = null;
+        try {
+            if (isset($pdo)) {
+                $stmt = $pdo->prepare('SELECT id, pais, descripcion, creado_en FROM paises WHERE id = ?');
+                $stmt->execute([$id]);
+                $country = $stmt->fetch();
+            }
+        } catch (Throwable $e) {
+            $country = null;
+        }
+        include __DIR__ . '/../views/countries/show.php';
+    }
+
     public static function create($country_id = null) {
         // Mostrar formulario de creaciÃ³n
         include __DIR__ . '/../views/countries/create.php';
@@ -160,4 +175,3 @@ class CountryController {
         exit();
     }
 }
-

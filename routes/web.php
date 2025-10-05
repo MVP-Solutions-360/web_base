@@ -95,6 +95,11 @@ if (($_GET['url'] ?? '') === 'countries/edit') {
     CountryController::edit($_GET['id']);
     exit();
 }
+if (($_GET['url'] ?? '') === 'countries/show') {
+    require_once __DIR__ . '/../controllers/CountryController.php';
+    CountryController::show($_GET['id']);
+    exit();
+}
 if (($_GET['url'] ?? '') === 'countries/update') {
     require_once __DIR__ . '/../controllers/CountryController.php';
     CountryController::update($_POST['id'], $_POST);
