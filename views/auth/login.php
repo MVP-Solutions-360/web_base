@@ -1,6 +1,6 @@
-<?php
+﻿<?php
 // Esta vista solo muestra el formulario y los errores
-// La lógica de autenticación está en AuthController
+// La lÃ³gica de autenticaciÃ³n estÃ¡ en AuthController
 if (!isset($error)) {
     $error = '';
 }
@@ -10,8 +10,9 @@ if (!isset($error)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wilrop Colombia Travel - Turismo República Dominicana y Antioquia</title>
-    <meta name="description" content="Wilrop Colombia Travel - Agencia especializada en turismo entre República Dominicana y Antioquia, Colombia. Descubre destinos únicos con nosotros.">
+    <title>Wilrop Colombia Travel - Turismo RepÃºblica Dominicana y Antioquia</title>
+    <meta name="description" content="Wilrop Colombia Travel - Agencia especializada en turismo entre RepÃºblica Dominicana y Antioquia, Colombia. Descubre destinos Ãºnicos con nosotros.">
+    <link rel="icon" type="image/x-icon" href="/public/imagenes/logos/wilrop_vertical.ico">
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -26,7 +27,7 @@ if (!isset($error)) {
             <div class="login-container">
                 <div class="login-content">
                     <div class="login-header">
-                        <h2>Iniciar Sesión</h2>
+                        <h2>Iniciar SesiÃ³n</h2>
                         <p>Accede a tu cuenta para gestionar tus reservas y disfrutar de servicios exclusivos</p>
                     </div>
                     
@@ -38,17 +39,17 @@ if (!isset($error)) {
                             </div>
                         <?php endif; ?>
                         <div class="form-group">
-                            <label for="email">Correo Electr�nico</label>
+                            <label for="email">Correo Electrï¿½nico</label>
                             <div class="input-group">
                                 <i class="fas fa-envelope"></i>
                                 <input type="email" id="email" name="username" required placeholder="tu@email.com" value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="password">Contraseña</label>
+                            <label for="password">ContraseÃ±a</label>
                             <div class="input-group">
                                 <i class="fas fa-lock"></i>
-                                <input type="password" id="password" name="password" required placeholder="Tu contraseña">
+                                <input type="password" id="password" name="password" required placeholder="Tu contraseÃ±a">
                                 <button type="button" class="password-toggle" onclick="togglePassword()">
                                     <i class="fas fa-eye" id="passwordToggleIcon"></i>
                                 </button>
@@ -60,11 +61,11 @@ if (!isset($error)) {
                                 <span class="checkmark"></span>
                                 Recordarme
                             </label>
-                            <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                            <a href="#" class="forgot-password">Â¿Olvidaste tu contraseÃ±a?</a>
                         </div>
                         <button type="submit" class="btn btn-primary btn-full">
                             <i class="fas fa-sign-in-alt"></i>
-                            Iniciar Sesión
+                            Iniciar SesiÃ³n
                         </button>
                         <div class="login-divider">
                             <span>o</span>
@@ -82,7 +83,7 @@ if (!isset($error)) {
                     </form>
                     
                     <div class="login-footer">
-                        <p>¿No tienes una cuenta? <a href="/views/auth/register.php" class="register-link">Regístrate aquí</a></p>
+                        <p>Â¿No tienes una cuenta? <a href="/views/auth/register.php" class="register-link">RegÃ­strate aquÃ­</a></p>
                     </div>
                 </div>
                 
@@ -90,7 +91,7 @@ if (!isset($error)) {
                     <div class="login-bg">
                         <div class="login-overlay"></div>
                         <div class="login-text">
-                            <h3>¡Bienvenido de vuelta!</h3>
+                            <h3>Â¡Bienvenido de vuelta!</h3>
                             <p>Accede a tu cuenta y descubre nuevas aventuras con Wilrop Colombia Travel</p>
                             <div class="login-features">
                                 <div class="feature">
@@ -118,3 +119,4 @@ if (!isset($error)) {
     <script src="/assets/js/scripts.js"></script>
 </body>
 </html>
+

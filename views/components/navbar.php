@@ -3,22 +3,21 @@
         <div class="nav-container">
             <div class="logo">
                 <div class="logo-container">
-                    <img src="/public/imagenes/logos/wilrop_vertical.png" alt="Wilrop Colombia Travel" class="logo-image">
-                    <div class="logo-text">
-                        <h6>Wilrop Colombia Travel</h6>
-                    </div>
+                    <a href="/index.php" class="logo-link">
+                        <img src="/public/imagenes/logos/wilrop_vertical.png" alt="Wilrop Colombia Travel" class="logo-image">
+                    </a>
                 </div>
             </div>
             <ul class="nav-menu">
-                <li><a href="/index.php" class="nav-link">Inicio</a></li>
+
                 <li><a href="/views/countries/dominicana.php" class="nav-link">República Dominicana</a></li>
                 <li><a href="/views/countries/colombia.php" class="nav-link">Colombia</a></li>
                 <li><a href="/index.php#contacto" class="nav-link">Contacto</a></li>
                 <?php
-                    if (session_status() !== PHP_SESSION_ACTIVE) {
-                        session_start();
-                    }
-                    if (!empty($_SESSION['active'])): 
+                if (session_status() !== PHP_SESSION_ACTIVE) {
+                    session_start();
+                }
+                if (!empty($_SESSION['active'])):
                 ?>
                     <li><a href="/routes/web.php?url=admin" class="nav-link">Admin</a></li>
                     <li class="nav-user"><span class="nav-link">Hola, <?php echo htmlspecialchars($_SESSION['nombre'] ?? 'Usuario'); ?></span></li>

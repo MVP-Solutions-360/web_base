@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
@@ -8,7 +8,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle de País - Panel Admin</title>
+    <title>Detalle de PaÃ­s - Panel Admin</title>
+    <link rel="icon" type="image/x-icon" href="/public/imagenes/logos/wilrop_vertical.ico">
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -27,17 +28,17 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
         <main class="admin-content">
             <?php if (empty($country)): ?>
                 <div class="card">
-                    <h2>País no encontrado</h2>
-                    <p class="muted">No se encontró información para este país.</p>
+                    <h2>PaÃ­s no encontrado</h2>
+                    <p class="muted">No se encontrÃ³ informaciÃ³n para este paÃ­s.</p>
                     <div class="actions">
                         <a class="btn btn-outline" href="/routes/web.php?url=countries/list"><i class="fas fa-arrow-left"></i> Volver al listado</a>
                     </div>
                 </div>
             <?php else: ?>
                 <div class="card">
-                    <h2><?= htmlspecialchars($country['pais'] ?? ($country['name'] ?? 'País')) ?></h2>
+                    <h2><?= htmlspecialchars($country['pais'] ?? ($country['name'] ?? 'PaÃ­s')) ?></h2>
                     <p class="muted">Creado: <?= htmlspecialchars($country['creado_en'] ?? '') ?></p>
-                    <p><?= nl2br(htmlspecialchars($country['descripcion'] ?? 'Sin descripción')) ?></p>
+                    <p><?= nl2br(htmlspecialchars($country['descripcion'] ?? 'Sin descripciÃ³n')) ?></p>
                     <div class="actions">
                         <a class="btn btn-primary" href="/routes/web.php?url=cities/create&country_id=<?= $country['id'] ?>">
                             <i class="fas fa-plus"></i> Agregar ciudad
@@ -56,4 +57,5 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     <?php include __DIR__ . "/../components/footer.php"; ?>
 </body>
 </html>
+
 

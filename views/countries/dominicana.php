@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 ?>
 <!DOCTYPE html>
@@ -7,8 +7,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>República Dominicana - Wilrop Colombia Travel</title>
-    <meta name="description" content="Descubre República Dominicana con Wilrop Colombia Travel. Playas paradisíacas, cultura vibrante y experiencias únicas en el Caribe.">
+    <title>RepÃºblica Dominicana - Wilrop Colombia Travel</title>
+    <meta name="description" content="Descubre RepÃºblica Dominicana con Wilrop Colombia Travel. Playas paradisÃ­acas, cultura vibrante y experiencias Ãºnicas en el Caribe.">
+    <link rel="icon" type="image/x-icon" href="/public/imagenes/logos/wilrop_vertical.ico">
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -20,9 +21,9 @@
 
     <!-- Hero Section -->
     <section class="hero dominicana-hero">
-        <!-- Carrusel de Imágenes -->
+        <!-- Carrusel de ImÃ¡genes -->
         <div class="hero-carousel" id="dominicanaCarousel">
-            <!-- Las imágenes se cargarán dinámicamente aquí -->
+            <!-- Las imÃ¡genes se cargarÃ¡n dinÃ¡micamente aquÃ­ -->
         </div>
         <!-- Controles del Carrusel -->
         <div class="carousel-controls">
@@ -35,12 +36,12 @@
         </div>
         <!-- Indicadores -->
         <div class="carousel-indicators" id="dominicanaIndicators">
-            <!-- Los indicadores se generarán dinámicamente aquí -->
+            <!-- Los indicadores se generarÃ¡n dinÃ¡micamente aquÃ­ -->
         </div>
         <div class="hero-content">
             <div class="hero-text">
-                <h2>República Dominicana</h2>
-                <p>Descubre la magia del Caribe con playas paradisíacas, cultura vibrante y la hospitalidad dominicana que te conquistará.</p>
+                <h2>RepÃºblica Dominicana</h2>
+                <p>Descubre la magia del Caribe con playas paradisÃ­acas, cultura vibrante y la hospitalidad dominicana que te conquistarÃ¡.</p>
                 <div class="hero-buttons">
                     <a href="#destinos" class="btn btn-primary">Explorar Destinos</a>
                     <a href="#experiencias" class="btn btn-secondary">Ver Experiencias</a>
@@ -54,7 +55,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Destinos Imperdibles</h2>
-                <p>Explora los lugares más hermosos de República Dominicana</p>
+                <p>Explora los lugares mÃ¡s hermosos de RepÃºblica Dominicana</p>
             </div>
             <div class="destinos-grid">
                 <div class="destino-card">
@@ -63,7 +64,7 @@
                     </div>
                     <div class="destino-content">
                         <h3>Punta Cana</h3>
-                        <p>El destino de playa más famoso del país, con resorts de lujo, playas de arena blanca y aguas cristalinas perfectas para el buceo y deportes acuáticos.</p>
+                        <p>El destino de playa mÃ¡s famoso del paÃ­s, con resorts de lujo, playas de arena blanca y aguas cristalinas perfectas para el buceo y deportes acuÃ¡ticos.</p>
                         <ul>
                             <li>Playa Bavaro</li>
                             <li>Resorts todo incluido</li>
@@ -78,12 +79,12 @@
                     </div>
                     <div class="destino-content">
                         <h3>Santo Domingo</h3>
-                        <p>La capital histórica, cuna de América, donde se mezclan la historia colonial y la modernidad en una experiencia única.</p>
+                        <p>La capital histÃ³rica, cuna de AmÃ©rica, donde se mezclan la historia colonial y la modernidad en una experiencia Ãºnica.</p>
                         <ul>
                             <li>Zona Colonial (UNESCO)</li>
-                            <li>Museos históricos</li>
+                            <li>Museos histÃ³ricos</li>
                             <li>Vida nocturna vibrante</li>
-                            <li>Gastronomía local</li>
+                            <li>GastronomÃ­a local</li>
                         </ul>
                     </div>
                 </div>
@@ -93,26 +94,26 @@
                     </div>
                     <div class="destino-content">
                         <h3>Puerto Plata</h3>
-                        <p>Conocida como "La Novia del Atlántico", combina playas, montañas y una rica historia colonial en un ambiente relajado.</p>
+                        <p>Conocida como "La Novia del AtlÃ¡ntico", combina playas, montaÃ±as y una rica historia colonial en un ambiente relajado.</p>
                         <ul>
-                            <li>Teleférico de Puerto Plata</li>
+                            <li>TelefÃ©rico de Puerto Plata</li>
                             <li>Playa Dorada</li>
-                            <li>Centro histórico</li>
+                            <li>Centro histÃ³rico</li>
                             <li>Ecoturismo</li>
                         </ul>
                     </div>
                 </div>
                 <div class="destino-card">
                     <div class="destino-image">
-                        <img src="/public/imagenes/destinos/republica_dominicana/samana.png" alt="Samaná">
+                        <img src="/public/imagenes/destinos/republica_dominicana/samana.png" alt="SamanÃ¡">
                     </div>
                     <div class="destino-content">
-                        <h3>Samaná</h3>
-                        <p>Un paraíso natural donde puedes avistar ballenas jorobadas, disfrutar de cascadas espectaculares y playas vírgenes.</p>
+                        <h3>SamanÃ¡</h3>
+                        <p>Un paraÃ­so natural donde puedes avistar ballenas jorobadas, disfrutar de cascadas espectaculares y playas vÃ­rgenes.</p>
                         <ul>
                             <li>Avistamiento de ballenas</li>
-                            <li>Salto del Limón</li>
-                            <li>Playa Rincón</li>
+                            <li>Salto del LimÃ³n</li>
+                            <li>Playa RincÃ³n</li>
                             <li>Ecoturismo</li>
                         </ul>
                     </div>
@@ -121,12 +122,12 @@
         </div>
     </section>
 
-    <!-- Experiencias Únicas -->
+    <!-- Experiencias Ãšnicas -->
     <section id="experiencias" class="experiencias">
         <div class="container">
             <div class="section-header">
-                <h2>Experiencias Únicas</h2>
-                <p>Vive momentos inolvidables en República Dominicana</p>
+                <h2>Experiencias Ãšnicas</h2>
+                <p>Vive momentos inolvidables en RepÃºblica Dominicana</p>
             </div>
             <div class="experiencias-grid">
                 <div class="experiencia-card">
@@ -134,21 +135,21 @@
                         <i class="fas fa-water"></i>
                     </div>
                     <h3>Buceo y Snorkel</h3>
-                    <p>Explora los arrecifes de coral más hermosos del Caribe y descubre la vida marina tropical en aguas cristalinas.</p>
+                    <p>Explora los arrecifes de coral mÃ¡s hermosos del Caribe y descubre la vida marina tropical en aguas cristalinas.</p>
                 </div>
                 <div class="experiencia-card">
                     <div class="experiencia-icon">
                         <i class="fas fa-music"></i>
                     </div>
-                    <h3>Música y Baile</h3>
-                    <p>Sumérgete en la cultura dominicana con clases de bachata y merengue, los ritmos que definen el país.</p>
+                    <h3>MÃºsica y Baile</h3>
+                    <p>SumÃ©rgete en la cultura dominicana con clases de bachata y merengue, los ritmos que definen el paÃ­s.</p>
                 </div>
                 <div class="experiencia-card">
                     <div class="experiencia-icon">
                         <i class="fas fa-utensils"></i>
                     </div>
-                    <h3>Gastronomía Local</h3>
-                    <p>Saborea la auténtica comida dominicana: sancocho, mofongo, tostones y el famoso café dominicano.</p>
+                    <h3>GastronomÃ­a Local</h3>
+                    <p>Saborea la autÃ©ntica comida dominicana: sancocho, mofongo, tostones y el famoso cafÃ© dominicano.</p>
                 </div>
                 <div class="experiencia-card">
                     <div class="experiencia-icon">
@@ -167,20 +168,20 @@
             <div class="cultura-content">
                 <div class="cultura-text">
                     <h2>Cultura y Tradiciones</h2>
-                    <p>República Dominicana es un país rico en cultura, donde se fusionan las tradiciones taínas, españolas y africanas. La hospitalidad dominicana es legendaria, y cada región tiene sus propias tradiciones y festividades únicas.</p>
+                    <p>RepÃºblica Dominicana es un paÃ­s rico en cultura, donde se fusionan las tradiciones taÃ­nas, espaÃ±olas y africanas. La hospitalidad dominicana es legendaria, y cada regiÃ³n tiene sus propias tradiciones y festividades Ãºnicas.</p>
                     <div class="cultura-highlights">
                         <div class="highlight">
                             <i class="fas fa-calendar-alt"></i>
                             <div>
                                 <h4>Festividades</h4>
-                                <p>Carnaval, Festival de Merengue, y celebraciones religiosas únicas</p>
+                                <p>Carnaval, Festival de Merengue, y celebraciones religiosas Ãºnicas</p>
                             </div>
                         </div>
                         <div class="highlight">
                             <i class="fas fa-palette"></i>
                             <div>
-                                <h4>Arte y Artesanía</h4>
-                                <p>Pintura naif, cerámica taína, y artesanías en ámbar y larimar</p>
+                                <h4>Arte y ArtesanÃ­a</h4>
+                                <p>Pintura naif, cerÃ¡mica taÃ­na, y artesanÃ­as en Ã¡mbar y larimar</p>
                             </div>
                         </div>
                         <div class="highlight">
@@ -202,43 +203,43 @@
         </div>
     </section>
 
-    <!-- Información Práctica -->
+    <!-- InformaciÃ³n PrÃ¡ctica -->
     <section class="info-practica">
         <div class="container">
             <div class="section-header">
-                <h2>Información Práctica</h2>
+                <h2>InformaciÃ³n PrÃ¡ctica</h2>
                 <p>Todo lo que necesitas saber para tu viaje</p>
             </div>
             <div class="info-grid">
                 <div class="info-card">
                     <i class="fas fa-passport"></i>
-                    <h3>Documentación</h3>
-                    <p>Pasaporte válido por 6 meses. No se requiere visa para estancias menores a 90 días.</p>
+                    <h3>DocumentaciÃ³n</h3>
+                    <p>Pasaporte vÃ¡lido por 6 meses. No se requiere visa para estancias menores a 90 dÃ­as.</p>
                 </div>
                 <div class="info-card">
                     <i class="fas fa-dollar-sign"></i>
                     <h3>Moneda</h3>
-                    <p>Peso Dominicano (DOP). Se acepta USD en la mayoría de establecimientos turísticos.</p>
+                    <p>Peso Dominicano (DOP). Se acepta USD en la mayorÃ­a de establecimientos turÃ­sticos.</p>
                 </div>
                 <div class="info-card">
                     <i class="fas fa-language"></i>
                     <h3>Idioma</h3>
-                    <p>Español es el idioma oficial. Inglés ampliamente hablado en zonas turísticas.</p>
+                    <p>EspaÃ±ol es el idioma oficial. InglÃ©s ampliamente hablado en zonas turÃ­sticas.</p>
                 </div>
                 <div class="info-card">
                     <i class="fas fa-thermometer-half"></i>
                     <h3>Clima</h3>
-                    <p>Tropical todo el año. Temperatura promedio: 25-30°C. Temporada de lluvias: mayo-noviembre.</p>
+                    <p>Tropical todo el aÃ±o. Temperatura promedio: 25-30Â°C. Temporada de lluvias: mayo-noviembre.</p>
                 </div>
                 <div class="info-card">
                     <i class="fas fa-plane"></i>
                     <h3>Vuelos</h3>
-                    <p>Vuelos directos desde Colombia a Santo Domingo y Punta Cana. Duración: 2-3 horas.</p>
+                    <p>Vuelos directos desde Colombia a Santo Domingo y Punta Cana. DuraciÃ³n: 2-3 horas.</p>
                 </div>
                 <div class="info-card">
                     <i class="fas fa-shield-alt"></i>
                     <h3>Seguridad</h3>
-                    <p>País seguro para turistas. Se recomienda tomar precauciones básicas en zonas urbanas.</p>
+                    <p>PaÃ­s seguro para turistas. Se recomienda tomar precauciones bÃ¡sicas en zonas urbanas.</p>
                 </div>
             </div>
         </div>
@@ -248,8 +249,8 @@
     <section class="cta-section">
         <div class="container">
             <div class="cta-content">
-                <h2>¿Listo para descubrir República Dominicana?</h2>
-                <p>Contáctanos y planifica tu viaje perfecto al paraíso caribeño</p>
+                <h2>Â¿Listo para descubrir RepÃºblica Dominicana?</h2>
+                <p>ContÃ¡ctanos y planifica tu viaje perfecto al paraÃ­so caribeÃ±o</p>
                 <div class="cta-buttons">
                     <a href="../../index.php#contacto" class="btn btn-primary">Contactar Ahora</a>
                     <a href="../../products.html" class="btn btn-secondary">Ver Paquetes</a>
@@ -273,7 +274,7 @@
         ];
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Detectar qué página estamos cargando
+            // Detectar quÃ© pÃ¡gina estamos cargando
             const currentPage = window.location.pathname.split('/').pop();
             // Permitir carrusel en index.php y index.html
             if (currentPage === 'dominicana.html') {
@@ -285,3 +286,4 @@
 </body>
 
 </html>
+

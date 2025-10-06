@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 include 'conexion.php';
 
@@ -15,9 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($nombre) || empty($apellido) || empty($email) || empty($password)) {
         $error = 'Todos los campos son obligatorios';
     } elseif ($password !== $confirm_password) {
-        $error = 'Las contraseñas no coinciden';
+        $error = 'Las contraseÃ±as no coinciden';
     } elseif (strlen($password) < 6) {
-        $error = 'La contraseña debe tener al menos 6 caracteres';
+        $error = 'La contraseÃ±a debe tener al menos 6 caracteres';
     } else {
         $query = "SELECT id FROM usuarios WHERE email = ?";
         $stmt = mysqli_prepare($conexion, $query);
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $result = mysqli_stmt_get_result($stmt);
 
         if (mysqli_num_rows($result) > 0) {
-            $error = 'Este correo electrónico ya está registrado';
+            $error = 'Este correo electrÃ³nico ya estÃ¡ registrado';
         } else {
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
             $query = "INSERT INTO usuarios (nombre, apellido, email, password) VALUES (?, ?, ?, ?)";
@@ -34,10 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             mysqli_stmt_bind_param($stmt, "ssss", $nombre, $apellido, $email, $password_hash);
 
             if (mysqli_stmt_execute($stmt)) {
-                $success = 'Usuario registrado exitosamente. Ahora puedes iniciar sesión.';
+                $success = 'Usuario registrado exitosamente. Ahora puedes iniciar sesiÃ³n.';
                 $nombre = $apellido = $email = '';
             } else {
-                $error = 'Error al registrar el usuario. Inténtalo de nuevo.';
+                $error = 'Error al registrar el usuario. IntÃ©ntalo de nuevo.';
             }
         }
         mysqli_stmt_close($stmt);
@@ -50,7 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - Wilrop Colombia Travel</title>
-    <meta name="description" content="Regístrate en Wilrop Colombia Travel para acceder a servicios exclusivos y gestionar tus reservas.">
+    <meta name="description" content="RegÃ­strate en Wilrop Colombia Travel para acceder a servicios exclusivos y gestionar tus reservas.">
+    <link rel="icon" type="image/x-icon" href="/public/imagenes/logos/wilrop_vertical.ico">
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -74,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <li><a href="/products.html" class="nav-link">Productos</a></li>
                     <li><a href="/src/admin/admin.php" class="nav-link">Admin</a></li>
                     <li><a href="/index.php#contacto" class="nav-link">Contacto</a></li>
-                     <li><a href="/views/auth/login.php" class="nav-link login-btn">Iniciar Sesión</a></li>
+                     <li><a href="/views/auth/login.php" class="nav-link login-btn">Iniciar SesiÃ³n</a></li>
                 </ul>
                 <div class="hamburger">
                     <span class="bar"></span>
@@ -92,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="login-content">
                     <div class="login-header">
                         <h2>Crear Cuenta</h2>
-                        <p>Únete a Wilrop Colombia Travel y descubre experiencias únicas</p>
+                        <p>Ãšnete a Wilrop Colombia Travel y descubre experiencias Ãºnicas</p>
                     </div>
 
                     <form id="registerForm" class="login-form" method="POST" action="/views/auth/register.php">
@@ -127,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
 
                         <div class="form-group">
-                            <label for="email">Correo Electrónico</label>
+                            <label for="email">Correo ElectrÃ³nico</label>
                             <div class="input-group">
                                 <i class="fas fa-envelope"></i>
                                 <input type="email" id="email" name="email" required placeholder="tu@email.com" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
@@ -135,24 +136,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
 
                         <div class="form-group">
-                            <label for="password">Contraseña</label>
+                            <label for="password">ContraseÃ±a</label>
                             <div class="input-group">
                                 <i class="fas fa-lock"></i>
-                                <input type="password" id="password" name="password" required placeholder="Mínimo 6 caracteres">
+                                <input type="password" id="password" name="password" required placeholder="MÃ­nimo 6 caracteres">
                                 <button type="button" class="password-toggle" onclick="togglePassword()">
                                     <i class="fas fa-eye" id="passwordToggleIcon"></i>
                                 </button>
                             </div>
                             <div class="password-requirements">
-                                La contraseña debe tener al menos 6 caracteres
+                                La contraseÃ±a debe tener al menos 6 caracteres
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="confirm_password">Confirmar Contraseña</label>
+                            <label for="confirm_password">Confirmar ContraseÃ±a</label>
                             <div class="input-group">
                                 <i class="fas fa-lock"></i>
-                                <input type="password" id="confirm_password" name="confirm_password" required placeholder="Confirma tu contraseña">
+                                <input type="password" id="confirm_password" name="confirm_password" required placeholder="Confirma tu contraseÃ±a">
                             </div>
                         </div>
 
@@ -162,7 +163,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </button>
 
                         <div class="login-footer">
-                            <p>¿Ya tienes una cuenta? <a href="/views/auth/login.php" class="register-link">Inicia sesión aquí</a></p>
+                            <p>Â¿Ya tienes una cuenta? <a href="/views/auth/login.php" class="register-link">Inicia sesiÃ³n aquÃ­</a></p>
                         </div>
                     </form>
                 </div>
@@ -171,7 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="login-bg">
                         <div class="login-overlay"></div>
                         <div class="login-text">
-                            <h3>¡Únete a la aventura!</h3>
+                            <h3>Â¡Ãšnete a la aventura!</h3>
                             <p>Crea tu cuenta y empieza a gestionar tus viajes con Wilrop Colombia Travel</p>
                             <div class="login-features">
                                 <div class="feature">
@@ -199,18 +200,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Wilrop Colombia Travel</h3>
-                    <p>Especialistas en turismo entre República Dominicana y Colombia. Tu agencia de confianza para experiencias únicas.</p>
+                    <p>Especialistas en turismo entre RepÃºblica Dominicana y Colombia. Tu agencia de confianza para experiencias Ãºnicas.</p>
                 </div>
                 <div class="footer-section">
                     <h4>Destinos</h4>
                     <ul>
-                        <li><a href="/src/dominicana/dominicana.php">República Dominicana</a></li>
+                        <li><a href="/src/dominicana/dominicana.php">RepÃºblica Dominicana</a></li>
                         <li><a href="/src/colombia/colombia.php">Colombia</a></li>
                         <li><a href="/src/colombia/colombia.php#antioquia">Antioquia</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Enlaces Rápidos</h4>
+                    <h4>Enlaces RÃ¡pidos</h4>
                     <ul>
                         <li><a href="/index.php">Inicio</a></li>
                         <li><a href="/products.html">Productos</a></li>
@@ -233,3 +234,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="/assets/js/scripts.js"></script>
 </body>
 </html>
+
