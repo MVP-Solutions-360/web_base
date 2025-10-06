@@ -161,3 +161,13 @@
     background-color: #90a4ae;
 }
 
+
+.admin-toolbar__actions {
+    display: flex;
+    gap: .75rem;
+    flex-wrap: wrap;
+}
+
+.admin-toolbar__actions .btn {
+    margin-right: 0;
+}
