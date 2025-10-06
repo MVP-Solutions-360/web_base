@@ -1,6 +1,14 @@
-﻿<?php
-header('Content-Type: text/html; charset=UTF-8');
-mb_internal_encoding('UTF-8');
+<?php
+require_once __DIR__ . '/../../helpers/auth.php';
+
+if (!isAuthenticated()) {
+    header('Location: /views/auth/login.php');
+    exit();
+}
+
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -10,62 +18,49 @@ mb_internal_encoding('UTF-8');
     <title>Panel de Administración - Wilrop Colombia Travel</title>
     <meta name="description" content="Panel de administración de Wilrop Colombia Travel. Gestiona países, ciudades, paquetes y tours.">
     <link rel="icon" type="image/x-icon" href="/public/imagenes/logos/wilrop_vertical.ico">
-
-    <!-- CSS principal del sitio (navbar, footer, fuentes) -->
     <link rel="stylesheet" href="/assets/css/styles.css">
-    <!-- CSS del panel -->
-    <link rel="stylesheet" href="/assets/css/admin.css">
-
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-
 <body>
-    <!-- Navbar -->
-    <?php include __DIR__ . "/../components/navbar.php"; ?>
+    <?php include __DIR__ . '/../components/navbar.php'; ?>
 
     <div class="admin-layout">
-        <!-- Sidebar -->
-        <aside class="admin-sidebar">
-            <?php include __DIR__ . "/../components/admin_sidebar.php"; ?>
-        </aside>
+        <?php include __DIR__ . '/../components/admin_sidebar.php'; ?>
 
-        <!-- Contenido principal -->
         <main class="admin-main">
-            <div class="admin-header">
+            <div class="admin-main__intro">
                 <h1>Panel de Administración</h1>
                 <p>Bienvenido al panel. Selecciona una opción del menú lateral para comenzar.</p>
             </div>
 
-            <div class="admin-grid">
+            <div class="admin-widgets">
                 <div class="admin-card">
                     <h3>Países</h3>
                     <p>Gestiona los países disponibles.</p>
-                    <a class="btn" href="/routes/web.php?url=countries/list">Ver países</a>
+                    <a class="btn btn-primary" href="/routes/web.php?url=countries/list">Ver países</a>
                 </div>
-
                 <div class="admin-card">
                     <h3>Ciudades</h3>
                     <p>Gestiona las ciudades por país.</p>
-                    <a class="btn" href="/routes/web.php?url=cities/list">Ver ciudades</a>
+                    <a class="btn btn-primary" href="/routes/web.php?url=cities/list">Ver ciudades</a>
                 </div>
-
                 <div class="admin-card">
                     <h3>Paquetes</h3>
                     <p>Administra paquetes y precios.</p>
-                    <a class="btn" href="/routes/web.php?url=packages/list">Ver paquetes</a>
+                    <a class="btn btn-primary" href="/routes/web.php?url=packages/list">Ver paquetes</a>
                 </div>
-
                 <div class="admin-card">
                     <h3>Tours</h3>
                     <p>Gestiona tours y actividades.</p>
-                    <a class="btn" href="/routes/web.php?url=tours/list">Ver tours</a>
+                    <a class="btn btn-primary" href="/routes/web.php?url=tours/list">Ver tours</a>
                 </div>
             </div>
         </main>
     </div>
 
-    <!-- Footer -->
+    <?php include __DIR__ . '/../components/footer.php'; ?>
 
+    <script src="/assets/js/scripts.js"></script>
 </body>
 </html>

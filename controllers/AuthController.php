@@ -4,49 +4,53 @@ require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../models/User.php';
 
 class AuthController {
-    public static function login($username, $password) {
-        session_start();
-        global $pdo;
-        $error = '';
-        if (!empty($username) && !empty($password)) {
-            $stmt = $pdo->prepare('SELECT * FROM usuarios WHERE email = ?');
-            $stmt->execute([$username]);
-            $user = $stmt->fetch();
-            if ($user) {
-                if (password_verify($password, $user['password']) || md5($password) === $user['password']) {
-                    $_SESSION['active'] = true;
-                    $_SESSION['idUser'] = $user['id'];
-                    $_SESSION['nombre'] = $user['nombre'] . ' ' . $user['apellido'];
-                    $_SESSION['correo'] = $user['email'];
-                    $_SESSION['usuario'] = $user['email'];
-                    if ($user['id'] == 1) {
-                        header('Location: /routes/web.php?url=admin');
-                    } else {
-                        header('Location: /index.php');
-                    }
-                    exit();
-                } else {
-                    $error = 'Contraseña incorrecta';
-                }
-            } else {
-                $error = 'Usuario no encontrado';
-            }
-        } else {
-            $error = 'Por favor completa todos los campos';
+    public function login(array $data): void
+    {
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
         }
-        // Mostrar el formulario de login con error
+
+        global $pdo;
+
+        $username = trim($data['username'] ?? '');
+        $password = trim($data['password'] ?? '');
+        $error = '';
+
+        if ($username === '' || $password === '') {
+            $error = 'Por favor completa todos los campos';
+            include __DIR__ . '/../views/auth/login.php';
+            return;
+        }
+
+        $stmt = $pdo->prepare('SELECT * FROM usuarios WHERE email = ?');
+        $stmt->execute([$username]);
+        $user = $stmt->fetch();
+
+        if ($user && (password_verify($password, $user['password']) || md5($password) === $user['password'])) {
+            $_SESSION['active'] = true;
+            $_SESSION['idUser'] = $user['id'];
+            $_SESSION['nombre'] = trim(($user['nombre'] ?? '') . ' ' . ($user['apellido'] ?? '')) ?: $user['email'];
+            $_SESSION['correo'] = $user['email'];
+            $_SESSION['usuario'] = $user['email'];
+
+            header('Location: /views/admin/admin.php');
+            exit();
+        }
+
+        $error = 'Credenciales invalidas';
         include __DIR__ . '/../views/auth/login.php';
     }
 
-    public static function logout() {
-        session_start();
-        session_destroy();
-        header('Location: /index.php');
-        exit();
-    }
+    public function logout(): void
+    {
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
+        }
 
-    public static function check() {
-        session_start();
-        return isset($_SESSION['active']) && $_SESSION['active'] === true;
+        $_SESSION = [];
+        session_destroy();
+
+        header('Location: /views/auth/login.php');
+        exit();
     }
 }

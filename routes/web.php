@@ -1,7 +1,7 @@
 <?php
 // Rutas principales del proyecto
 
-// Compatibilidad: permitir patrón antiguo ?controller=...&action=...
+// Compatibilidad: permitir patrÃ³n antiguo ?controller=...&action=...
 if (!isset($_GET['url'])) {
     if (isset($_GET['controller'], $_GET['action'])) {
         $c = strtolower((string)$_GET['controller']);
@@ -51,21 +51,26 @@ if (!isset($_GET['url'])) {
     }
 }
 
-// Autenticación
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_GET['url'] ?? '') === 'login') {
+require_once __DIR__ . '/../helpers/auth.php';
+
+$url = $_GET['url'] ?? '';
+
+if (
+    $url === 'login'
+    && $_SERVER['REQUEST_METHOD'] === 'POST'
+) {
     require_once __DIR__ . '/../controllers/AuthController.php';
-    AuthController::login($_POST['username'], $_POST['password']);
-    exit();
-}
-if (($_GET['url'] ?? '') === 'logout') {
-    require_once __DIR__ . '/../controllers/AuthController.php';
-    AuthController::logout();
+    (new AuthController())->login($_POST);
     exit();
 }
 
-// Panel de administración (requiere autenticación)
-if (($_GET['url'] ?? '') === 'admin') {
-    require_once __DIR__ . '/../helpers/auth.php';
+if ($url === 'logout') {
+    require_once __DIR__ . '/../controllers/AuthController.php';
+    (new AuthController())->logout();
+    exit();
+}
+
+if ($url === 'admin') {
     if (!isAuthenticated()) {
         header('Location: /views/auth/login.php');
         exit();
@@ -73,8 +78,7 @@ if (($_GET['url'] ?? '') === 'admin') {
     require_once __DIR__ . '/../views/admin/admin.php';
     exit();
 }
-
-// CRUD Países
+// CRUD PaÃ­ses
 if (($_GET['url'] ?? '') === 'countries/list') {
     require_once __DIR__ . '/../controllers/CountryController.php';
     CountryController::index();
@@ -207,7 +211,7 @@ if (($_GET['url'] ?? '') === 'tours/delete') {
     exit();
 }
 
-// Vistas públicas
+// Vistas pÃºblicas
 if (($_GET['url'] ?? '') === 'menu_destinos') {
     require_once __DIR__ . '/../views/public/menu_destinos.php';
     exit();
