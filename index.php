@@ -8,7 +8,7 @@ require_once __DIR__ . '/config/database.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wilrop Colombia Travel - Turismo RepÃºblica Dominicana y Antioquia</title>
-    <meta name="description" content="Wilrop Colombia Travel - Agencia especializada en turismo entre RepÃºblica Dominicana y Antioquia, Colombia. Descubre destinos Ãºnicos con nosotros.">
+    <meta name="description" content="Wilrop Colombia Travel - Agencia especializada en turismo entre República Dominicana y Colombia. Descubre destinos Ãºnicos con nosotros.">
     <link rel="icon" type="image/x-icon" href="/public/imagenes/logos/wilrop_vertical.ico">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">

@@ -26,7 +26,7 @@
                     </li>
                 <?php else: ?>
                     <li>
-                        <a href="/views/auth/login.php" class="nav-link login-btn active">Iniciar Sesión</a>
+                        <a href="/views/admin/admin.php" class="nav-link login-btn active">Iniciar Sesión</a>
                     </li>
                 <?php endif; ?>
             </ul>

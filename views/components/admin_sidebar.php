@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
@@ -22,11 +22,11 @@ if (!function_exists('is_active')) {
     </div>
 
     <nav class="admin-menu">
-        <a class="admin-menu__item <?php echo is_active('/routes/web.php?url=admin'); ?>" href="/routes/web.php?url=admin">
+        <a class="admin-menu__item <?php echo is_active('/index.php'); ?>" href="/index.php">
             <i class="fas fa-gauge"></i> <span>Dashboard</span>
         </a>
         <div class="admin-menu__group">
-            <div class="admin-menu__group-title"><i class="fas fa-flag"></i> <span>Países</span></div>
+            <div class="admin-menu__group-title"><i class="fas fa-flag"></i> <span>PaÃ­ses</span></div>
             <a class="admin-menu__subitem <?php echo is_active('countries/list'); ?>" href="/routes/web.php?url=countries/list">Listado</a>
             <a class="admin-menu__subitem <?php echo is_active('countries/create'); ?>" href="/routes/web.php?url=countries/create">Crear</a>
         </div>
@@ -44,6 +44,7 @@ if (!function_exists('is_active')) {
         </div>
         <hr>
         <a class="admin-menu__item" href="/index.php"><i class="fas fa-home"></i> <span>Ir al sitio</span></a>
-        <a class="admin-menu__item" href="/routes/web.php?url=logout"><i class="fas fa-right-from-bracket"></i> <span>Cerrar sesión</span></a>
+        <a class="admin-menu__item" href="/routes/web.php?url=logout"><i class="fas fa-right-from-bracket"></i> <span>Cerrar sesiÃ³n</span></a>
     </nav>
 </aside>
+
