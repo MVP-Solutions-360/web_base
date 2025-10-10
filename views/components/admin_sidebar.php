@@ -22,11 +22,11 @@ if (!function_exists('is_active')) {
     </div>
 
     <nav class="admin-menu">
-        <a class="admin-menu__item <?php echo is_active('/index.php'); ?>" href="/index.php">
+        <a class="admin-menu__item <?php echo is_active('/views/admin/admin.php'); ?>" href="/views/admin/admin.php">
             <i class="fas fa-gauge"></i> <span>Dashboard</span>
         </a>
         <div class="admin-menu__group">
-            <div class="admin-menu__group-title"><i class="fas fa-flag"></i> <span>PaÃ­ses</span></div>
+            <div class="admin-menu__group-title"><i class="fas fa-flag"></i> <span>Paises</span></div>
             <a class="admin-menu__subitem <?php echo is_active('countries/list'); ?>" href="/routes/web.php?url=countries/list">Listado</a>
             <a class="admin-menu__subitem <?php echo is_active('countries/create'); ?>" href="/routes/web.php?url=countries/create">Crear</a>
         </div>

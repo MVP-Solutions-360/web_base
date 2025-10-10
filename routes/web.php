@@ -78,7 +78,7 @@ if ($url === 'admin') {
     require_once __DIR__ . '/../views/admin/admin.php';
     exit();
 }
-// CRUD PaÃ­ses
+// CRUD Paises
 if (($_GET['url'] ?? '') === 'countries/list') {
     require_once __DIR__ . '/../controllers/CountryController.php';
     CountryController::index();

@@ -13,6 +13,7 @@
                 <li><a href="/views/countries/dominicana.php" class="nav-link">República Dominicana</a></li>
                 <li><a href="/views/countries/colombia.php" class="nav-link">Colombia</a></li>
                 <li><a href="/index.php#contacto" class="nav-link">Contacto</a></li>
+                <li><a href="/views/admin/us.php" class="nav-link">Nosotros</a></li>
                 <?php
                 if (session_status() !== PHP_SESSION_ACTIVE) {
                     session_start();

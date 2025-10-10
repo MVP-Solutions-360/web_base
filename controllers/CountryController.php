@@ -2,7 +2,7 @@
 
 class CountryController {
     public static function index() {
-        // Cargar paÃ­ses desde la BD y pasarlos a la vista
+        // Cargar Paises desde la BD y pasarlos a la vista
         require_once __DIR__ . '/../config/database.php';
         $countries = [];
         $db_error = '';
@@ -13,7 +13,7 @@ class CountryController {
             $stmt = $pdo->query('SELECT id, pais, descripcion, creado_en FROM paises ORDER BY pais');
             $countries = $stmt->fetchAll();
         } catch (Throwable $e) {
-            $db_error = 'Error al consultar paÃ­ses: ' . $e->getMessage();
+            $db_error = 'Error al consultar Paises: ' . $e->getMessage();
         }
         include __DIR__ . '/../views/countries/list.php';
     }

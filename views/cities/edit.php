@@ -11,8 +11,7 @@ if (!isset($db_error)) { $db_error = ''; }
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Ciudad - Panel Admin</title>
     <link rel="icon" type="image/x-icon" href="/public/imagenes/logos/wilrop_vertical.ico">
-    <link rel="stylesheet" href="/assets/css/styles.css">
-    <link rel="stylesheet" href="/assets/css/admin.css">
+    <link rel="stylesheet" href="/assets/css/admin_panel.css">
     <link rel="stylesheet" href="/assets/css/admin-table.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -20,21 +19,19 @@ if (!isset($db_error)) { $db_error = ''; }
 <body>
     <?php include __DIR__ . "/../components/navbar.php"; ?>
 
-    <div class="admin-layout">
-        <aside class="admin-sidebar">
-            <?php include __DIR__ . "/../components/admin_sidebar.php"; ?>
-        </aside>
+    <div class="admin-wrapper">
+        <?php include __DIR__ . "/../components/admin_sidebar.php"; ?>
 
-        <main class="admin-main">
+        <main class="admin-content">
             <?php if (!empty($db_error)): ?>
                 <div class="alert alert-danger">
                     <?= htmlspecialchars($db_error) ?>
                 </div>
             <?php endif; ?>
 
-            <div class="admin-main__intro">
+            <div class="admin-header">
                 <h1>Editar Ciudad</h1>
-                <p class="muted">Actualiza la informacion de la ciudad seleccionada</p>
+                <p>Actualiza la informacion de la ciudad seleccionada</p>
             </div>
 
             <section class="admin-card">
@@ -86,9 +83,6 @@ if (!isset($db_error)) { $db_error = ''; }
             </section>
         </main>
     </div>
-
-    <?php include __DIR__ . "/../components/footer.php"; ?>
-
     <script src="/assets/js/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>

@@ -1575,3 +1575,19 @@ function eliminarProductoModal() {
         }
     }
 }
+
+const hamburger = document.querySelector('.hamburger');
+const sidebar = document.querySelector('.admin-sidebar');
+const overlay = document.querySelector('.mobile-menu-overlay');
+
+if (hamburger && sidebar) {
+  hamburger.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+  });
+}
+
+if (overlay && sidebar) {
+  overlay.addEventListener('click', () => {
+    sidebar.classList.remove('active');
+  });
+}

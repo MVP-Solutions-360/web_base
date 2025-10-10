@@ -2,184 +2,141 @@
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
-if (!function_exists('is_active')) {
-    function is_active($needle)
-    {
-        $uri = $_SERVER['REQUEST_URI'] ?? '';
-        return strpos($uri, $needle) !== false ? 'active' : '';
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PaÃ­ses - Panel Admin</title>
+    <title>Paises - Panel Admin</title>
     <link rel="icon" type="image/x-icon" href="/public/imagenes/logos/wilrop_vertical.ico">
-    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/admin_panel.css">
+    <link rel="stylesheet" href="/assets/css/admin-table.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        .admin-toolbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .admin-toolbar h2 {
-            margin: 0;
-        }
-
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--bg-white);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .table th,
-        .table td {
-            padding: .85rem 1rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .table th {
-            background: var(--bg-light);
-            text-align: left;
-        }
-
-        .table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .actions a {
-            margin-right: .5rem;
-            text-decoration: none;
-            color: var(--primary-color);
-            font-weight: 500
-        }
-
-        .actions a:hover {
-            text-decoration: underline;
-        }
-
-        .empty {
-            padding: 1rem;
-            color: var(--text-light);
-        }
-    </style>
 </head>
-
 <body>
+    <?php include __DIR__ . "/../components/navbar.php"; ?>
 
-    <div class="admin-layout">
+    <div class="admin-wrapper">
         <?php include __DIR__ . "/../components/admin_sidebar.php"; ?>
 
-        <main class="">
-            <div class="admin-toolbar">
-                <h2>PaÃ­ses</h2>
-                <a class="btn btn-primary" href="/routes/web.php?url=countries/create"><i class="fas fa-plus"></i> Crear paÃ­s</a>
-            </div>
+        <main class="admin-content">
             <?php if (!empty($db_error)): ?>
-                <div class="alert alert-danger" style="margin:1rem 0;">
+                <div class="alert alert-danger">
                     <?= htmlspecialchars($db_error) ?>
-                    <div style="color:#777;font-size:.9rem;">Verifica config/database.php y las credenciales de conexiÃ³n.</div>
                 </div>
             <?php endif; ?>
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th style="width:260px">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if (empty($countries)): ?>
-                        <tr>
-                            <td colspan="2" class="empty">No hay paÃ­ses registrados.</td>
-                        </tr>
-                        <?php else: foreach ($countries as $country): ?>
-                            <tr>
-                        <td>
-                            <a href="/routes/web.php?url=countries/show&id=<?= $country['id'] ?>">
-                                <?= htmlspecialchars($country['pais'] ?? ($country['name'] ?? '')) ?>
-                            </a>
-                        </td>
-                                <td class="actions">
-                                    <a href="/routes/web.php?url=countries/edit&id=<?= $country['id'] ?>"><i class="fas fa-pen"></i> Editar</a>
-                                    <a href="#" class="delete-country" data-url="/routes/web.php?url=countries/delete&id=<?= $country['id'] ?>" data-name="<?= htmlspecialchars($country['pais'] ?? ($country['name'] ?? '')) ?>"><i class="fas fa-trash"></i> Eliminar</a>
-                                    <a href="/routes/web.php?url=cities/list&country_id=<?= $country['id'] ?>"><i class="fas fa-city"></i> Ver Ciudades</a>
-                                </td>
-                            </tr>
-                    <?php endforeach;
-                    endif; ?>
-                </tbody>
-            </table>
+            <div class="admin-header">
+                <h1>Paises</h1>
+                <p>Gestiona los paises registrados</p>
+            </div>
+
+            <section class="admin-card">
+                <div class="admin-toolbar">
+                    <h2>Listado de Paises</h2>
+                    <div class="admin-toolbar__actions">
+                        <a class="btn btn-primary" href="/routes/web.php?url=countries/create">
+                            <i class="fas fa-plus"></i> Agregar pais
+                        </a>
+                        <a class="btn btn-outline" href="/routes/web.php?url=admin">
+                            <i class="fas fa-arrow-left"></i> Volver al panel
+                        </a>
+                    </div>
+                </div>
+
+                <?php if (empty($countries)): ?>
+                    <p class="muted">Aun no hay paises registrados.</p>
+                <?php else: ?>
+                    <div class="table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Pais</th>
+                                    <th>Descripcion</th>
+                                    <th style="width: 160px;">Creado</th>
+                                    <th style="width: 260px;">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($countries as $country): ?>
+                                    <tr>
+                                        <td>
+                                            <a href="/routes/web.php?url=countries/show&id=<?= $country['id'] ?>">
+                                                <?= htmlspecialchars($country['pais'] ?? ($country['name'] ?? '')) ?>
+                                            </a>
+                                        </td>
+                                        <td><?= htmlspecialchars($country['descripcion'] ?? 'Sin descripcion') ?></td>
+                                        <td><?= htmlspecialchars($country['creado_en'] ?? '') ?></td>
+                                        <td class="actions">
+                                            <a href="/routes/web.php?url=countries/edit&id=<?= $country['id'] ?>">
+                                                <i class="fas fa-pen"></i> Editar
+                                            </a>
+                                            <a href="#"
+                                               class="delete-country"
+                                               data-url="/routes/web.php?url=countries/delete&id=<?= $country['id'] ?>&name=<?= urlencode($country['pais'] ?? ($country['name'] ?? '')) ?>"
+                                               data-name="<?= htmlspecialchars($country['pais'] ?? ($country['name'] ?? '')) ?>">
+                                                <i class="fas fa-trash"></i> Eliminar
+                                            </a>
+                                            <a href="/routes/web.php?url=cities/list&country_id=<?= $country['id'] ?>">
+                                                <i class="fas fa-city"></i> Ver ciudades
+                                            </a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php endif; ?>
+            </section>
         </main>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        (function() {
+        (function(){
             try {
                 const url = new URL(window.location.href);
                 const status = url.searchParams.get('status');
                 const name = url.searchParams.get('name') || '';
                 if (status) {
-                    let title = 'OperaciÃ³n exitosa';
+                    let title = 'Operacion exitosa';
                     let text = '';
-                    if (status === 'created') {
-                        title = 'PaÃ­s creado';
-                        text = name ? `Se creÃ³ "${name}" correctamente` : '';
-                    } else if (status === 'updated') {
-                        title = 'PaÃ­s actualizado';
-                        text = name ? `Se actualizÃ³ "${name}" correctamente` : '';
-                    } else if (status === 'deleted') {
-                        title = 'PaÃ­s eliminado';
-                        text = name ? `Se eliminÃ³ "${name}" correctamente` : '';
-                    }
+                    let icon = 'success';
+                    if (status === 'created') { title = 'Pais creado'; text = name ? `Se creo "${name}" correctamente` : ''; }
+                    else if (status === 'updated') { title = 'Pais actualizado'; text = name ? `Se actualizo "${name}" correctamente` : ''; }
+                    else if (status === 'deleted') { title = 'Pais eliminado'; text = name ? `Se elimino "${name}" correctamente` : ''; }
+                    else if (status === 'error') { title = 'Error'; text = url.searchParams.get('message') || 'Ocurrio un problema.'; icon = 'error'; }
                     if (window.Swal) {
-                        Swal.fire({
-                            icon: 'success',
-                            title,
-                            text,
-                            timer: 2200,
-                            showConfirmButton: false
-                        });
+                        Swal.fire({ icon, title, text, timer: icon === 'error' ? undefined : 2200, showConfirmButton: icon === 'error' });
                     }
-                    const onlyUrl = url.searchParams.get('url') || 'countries/list';
-                    const newUrl = `${location.pathname}?url=${encodeURIComponent(onlyUrl)}`;
-                    history.replaceState(null, '', newUrl);
+                    const params = new URLSearchParams();
+                    params.set('url', 'countries/list');
+                    history.replaceState(null, '', `${location.pathname}?${params.toString()}`);
                 }
-            } catch (e) {
-                /* ignore */
-            }
+            } catch (e) {}
         })();
 
-        // ConfirmaciÃ³n de borrado con SweetAlert
-        (function() {
+        (function(){
             const links = document.querySelectorAll('.delete-country');
             links.forEach(link => {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', function(e){
                     e.preventDefault();
                     const url = this.getAttribute('data-url');
-                    const name = this.getAttribute('data-name') || 'este paÃ­s';
+                    const name = this.getAttribute('data-name') || 'este pais';
                     if (!window.Swal) {
-                        if (confirm(`Â¿Eliminar ${name}?`)) location.href = url;
+                        if (confirm(`Eliminar ${name}?`)) {
+                            window.location.href = url;
+                        }
                         return;
                     }
                     Swal.fire({
-                        title: 'Â¿Eliminar paÃ­s?',
-                        text: `Esta acciÃ³n eliminarÃ¡ "${name}"`,
+                        title: 'Eliminar pais?',
+                        text: `Esta accion eliminara "${name}"`,
                         icon: 'warning',
                         showCancelButton: true,
-                        confirmButtonText: 'SÃ­, eliminar',
+                        confirmButtonText: 'Si, eliminar',
                         cancelButtonText: 'Cancelar'
                     }).then(result => {
                         if (result.isConfirmed) {
@@ -190,8 +147,5 @@ if (!function_exists('is_active')) {
             });
         })();
     </script>
-    <?php include __DIR__ . "/../components/footer.php"; ?>
 </body>
-
 </html>
-

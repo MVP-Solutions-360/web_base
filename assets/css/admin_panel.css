@@ -1,0 +1,260 @@
+/* ================================
+   VARIABLES Y BASE
+================================ */
+:root {
+  --primary: #0d47a1;
+  --primary-hover: #1565c0;
+  --light-bg: #f8f9fb;
+  --white: #ffffff;
+  --text: #333;
+  --muted: #6b7280;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--light-bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ================================
+   NAVBAR
+================================ */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--white);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.navbar .nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+}
+
+.logo img {
+  height: 50px;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--primary);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.bar {
+  height: 3px;
+  width: 25px;
+  background: var(--primary);
+  border-radius: 2px;
+}
+
+/* ================================
+   LAYOUT PRINCIPAL
+================================ */
+.admin-wrapper {
+  display: flex;
+  min-height: 100vh;
+  margin-top: 70px; /* altura navbar */
+}
+
+/* ================================
+   SIDEBAR
+================================ */
+.admin-sidebar {
+  width: 250px;
+  background-color: var(--primary);
+  color: var(--white);
+  padding: 20px;
+  position: fixed;
+  top: 70px;
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+}
+
+.admin-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.admin-sidebar::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,255,0.3);
+  border-radius: 4px;
+}
+
+.admin-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.admin-user i {
+  font-size: 2rem;
+}
+
+.admin-user__info {
+  font-size: 0.9rem;
+}
+
+.admin-user__name {
+  font-weight: 600;
+  display: block;
+}
+
+.admin-menu__item,
+.admin-menu__subitem,
+.admin-menu__group-title {
+  display: block;
+  padding: 8px 0;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: opacity 0.2s ease;
+}
+
+.admin-menu__item:hover,
+.admin-menu__subitem:hover,
+.admin-menu__group-title:hover {
+  opacity: 0.8;
+}
+
+.admin-menu__group-title {
+  font-weight: 600;
+  margin-top: 15px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding-top: 12px;
+}
+
+.admin-menu__subitem {
+  margin-left: 18px;
+  opacity: 0.85;
+}
+
+.active {
+  font-weight: 600;
+  color: #ffd54f;
+}
+
+/* ================================
+   CONTENIDO
+================================ */
+.admin-content {
+  margin-left: 250px;
+  padding: 40px;
+  flex: 1;
+  background-color: var(--light-bg);
+  min-height: calc(100vh - 70px);
+}
+
+.admin-header h1 {
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.admin-header p {
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+/* ================================
+   TARJETAS
+================================ */
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.admin-card {
+  background: var(--white);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+
+.admin-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.admin-card h3 {
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.admin-card p {
+  color: var(--muted);
+  margin-bottom: 15px;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--primary);
+  color: var(--white);
+  padding: 10px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.btn:hover {
+  background: var(--primary-hover);
+}
+
+/* ================================
+   RESPONSIVIDAD
+================================ */
+@media (max-width: 992px) {
+  .admin-sidebar {
+    position: fixed;
+    left: -260px;
+    transition: left 0.3s ease;
+    z-index: 999;
+  }
+
+  .admin-sidebar.active {
+    left: 0;
+  }
+
+  .admin-content {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}

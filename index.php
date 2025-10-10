@@ -114,7 +114,7 @@ require_once __DIR__ . '/config/database.php';
                 <div class="servicio-card">
                     <i class="fas fa-map-marked-alt"></i>
                     <h3>Tours</h3>
-                    <p>Excursiones guiadas por los mejores destinos turÃ­sticos de ambos paÃ­ses.</p>
+                    <p>Excursiones guiadas por los mejores destinos turÃ­sticos de ambos Paises.</p>
                 </div>
                 <div class="servicio-card">
                     <i class="fas fa-concierge-bell"></i>
