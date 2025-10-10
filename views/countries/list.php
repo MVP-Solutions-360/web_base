@@ -5,6 +5,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +16,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
     <?php include __DIR__ . "/../components/navbar.php"; ?>
 
@@ -70,17 +72,17 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
                                         <td><?= htmlspecialchars($country['descripcion'] ?? 'Sin descripcion') ?></td>
                                         <td><?= htmlspecialchars($country['creado_en'] ?? '') ?></td>
                                         <td class="actions">
+                                            <a href="/routes/web.php?url=cities/list&country_id=<?= $country['id'] ?>">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
                                             <a href="/routes/web.php?url=countries/edit&id=<?= $country['id'] ?>">
-                                                <i class="fas fa-pen"></i> Editar
+                                                <i class="fas fa-pen"></i>
                                             </a>
                                             <a href="#"
-                                               class="delete-country"
-                                               data-url="/routes/web.php?url=countries/delete&id=<?= $country['id'] ?>&name=<?= urlencode($country['pais'] ?? ($country['name'] ?? '')) ?>"
-                                               data-name="<?= htmlspecialchars($country['pais'] ?? ($country['name'] ?? '')) ?>">
-                                                <i class="fas fa-trash"></i> Eliminar
-                                            </a>
-                                            <a href="/routes/web.php?url=cities/list&country_id=<?= $country['id'] ?>">
-                                                <i class="fas fa-city"></i> Ver ciudades
+                                                class="delete-country"
+                                                data-url="/routes/web.php?url=countries/delete&id=<?= $country['id'] ?>&name=<?= urlencode($country['pais'] ?? ($country['name'] ?? '')) ?>"
+                                                data-name="<?= htmlspecialchars($country['pais'] ?? ($country['name'] ?? '')) ?>">
+                                                <i class="fas fa-trash"></i>
                                             </a>
                                         </td>
                                     </tr>
@@ -95,7 +97,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        (function(){
+        (function() {
             try {
                 const url = new URL(window.location.href);
                 const status = url.searchParams.get('status');
@@ -104,12 +106,28 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
                     let title = 'Operacion exitosa';
                     let text = '';
                     let icon = 'success';
-                    if (status === 'created') { title = 'Pais creado'; text = name ? `Se creo "${name}" correctamente` : ''; }
-                    else if (status === 'updated') { title = 'Pais actualizado'; text = name ? `Se actualizo "${name}" correctamente` : ''; }
-                    else if (status === 'deleted') { title = 'Pais eliminado'; text = name ? `Se elimino "${name}" correctamente` : ''; }
-                    else if (status === 'error') { title = 'Error'; text = url.searchParams.get('message') || 'Ocurrio un problema.'; icon = 'error'; }
+                    if (status === 'created') {
+                        title = 'Pais creado';
+                        text = name ? `Se creo "${name}" correctamente` : '';
+                    } else if (status === 'updated') {
+                        title = 'Pais actualizado';
+                        text = name ? `Se actualizo "${name}" correctamente` : '';
+                    } else if (status === 'deleted') {
+                        title = 'Pais eliminado';
+                        text = name ? `Se elimino "${name}" correctamente` : '';
+                    } else if (status === 'error') {
+                        title = 'Error';
+                        text = url.searchParams.get('message') || 'Ocurrio un problema.';
+                        icon = 'error';
+                    }
                     if (window.Swal) {
-                        Swal.fire({ icon, title, text, timer: icon === 'error' ? undefined : 2200, showConfirmButton: icon === 'error' });
+                        Swal.fire({
+                            icon,
+                            title,
+                            text,
+                            timer: icon === 'error' ? undefined : 2200,
+                            showConfirmButton: icon === 'error'
+                        });
                     }
                     const params = new URLSearchParams();
                     params.set('url', 'countries/list');
@@ -118,10 +136,10 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
             } catch (e) {}
         })();
 
-        (function(){
+        (function() {
             const links = document.querySelectorAll('.delete-country');
             links.forEach(link => {
-                link.addEventListener('click', function(e){
+                link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const url = this.getAttribute('data-url');
                     const name = this.getAttribute('data-name') || 'este pais';
@@ -148,4 +166,5 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
         })();
     </script>
 </body>
+
 </html>

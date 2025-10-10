@@ -2,6 +2,9 @@
 if (session_status() !== PHP_SESSION_ACTIVE) {
     session_start();
 }
+if (!isset($country)) {
+    $country = null;
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -29,14 +32,38 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
             <?php endif; ?>
 
             <?php
-                $currentCountryId = $country['id'] ?? ($country_id ?? null);
-                $currentCountryId = $currentCountryId !== null && $currentCountryId !== '' ? (int) $currentCountryId : null;
-                $createUrl = $currentCountryId ? '/routes/web.php?url=cities/create&country_id=' . $currentCountryId : '/routes/web.php?url=cities/create';
-                $title = $country ? 'Ciudades de ' . ($country['pais'] ?? '') : 'Ciudades por Pais';
-                $subtitle = $country ? 'Gestiona los destinos registrados en ' . ($country['pais'] ?? '') : 'Gestiona los destinos registrados en todos los paises';
-                $returnUrl = $country ? '/routes/web.php?url=countries/show&id=' . $country['id'] : '/routes/web.php?url=countries/list';
-                $returnLabel = $country ? 'Volver al pais' : 'Volver a paises';
-                $countryQuery = $currentCountryId ? '&country_id=' . $currentCountryId : '';
+                $currentCountryId = null;
+                if (isset($country) && is_array($country) && isset($country['id'])) {
+                    $currentCountryId = (int) $country['id'];
+                } elseif (isset($country_id) && $country_id !== null && $country_id !== '') {
+                    $currentCountryId = (int) $country_id;
+                }
+
+                if ($currentCountryId !== null && (!isset($country) || !is_array($country) || !isset($country['id']))) {
+                    $country = null;
+                    if (!empty($cities)) {
+                        foreach ($cities as $cityContext) {
+                            if (isset($cityContext['pais_id'], $cityContext['pais']) && (int) $cityContext['pais_id'] === $currentCountryId) {
+                                $country = [
+                                    'id'   => (int) $cityContext['pais_id'],
+                                    'pais' => $cityContext['pais'],
+                                ];
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                $hasCountryContext = isset($country) && is_array($country) && isset($country['id']);
+                $contextQuery = $hasCountryContext ? ['country_id' => (int) $country['id']] : [];
+
+                $createUrl = '/routes/web.php?' . http_build_query(array_merge(['url' => 'cities/create'], $contextQuery));
+                $title = $hasCountryContext ? 'Ciudades de ' . ($country['pais'] ?? '') : 'Ciudades por Pais';
+                $subtitle = $hasCountryContext ? 'Gestiona los destinos registrados en ' . ($country['pais'] ?? '') : 'Gestiona los destinos registrados en todos los paises';
+                $returnUrl = $hasCountryContext
+                    ? '/routes/web.php?' . http_build_query(['url' => 'countries/show', 'id' => (int) $country['id']])
+                    : '/routes/web.php?url=countries/list';
+                $returnLabel = $hasCountryContext ? 'Volver al pais' : 'Volver a paises';
             ?>
 
             <div class="admin-header">
@@ -65,7 +92,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
                             <thead>
                                 <tr>
                                     <th>Ciudad</th>
-                                    <?php if (!$country): ?>
+                                    <?php if (!$hasCountryContext): ?>
                                         <th>Pais</th>
                                     <?php endif; ?>
                                     <th>Descripcion</th>
@@ -75,22 +102,33 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
                             </thead>
                             <tbody>
                                 <?php foreach ($cities as $city): ?>
+                                    <?php
+                                        $editUrl = '/routes/web.php?' . http_build_query(array_merge(
+                                            ['url' => 'cities/edit', 'id' => (int) $city['id']],
+                                            $contextQuery
+                                        ));
+                                        $deleteParams = array_merge(
+                                            ['url' => 'cities/delete', 'id' => (int) $city['id'], 'name' => $city['ciudad']],
+                                            $contextQuery
+                                        );
+                                        $deleteUrl = '/routes/web.php?' . http_build_query($deleteParams);
+                                    ?>
                                     <tr>
                                         <td><?= htmlspecialchars($city['ciudad']) ?></td>
-                                        <?php if (!$country): ?>
+                                        <?php if (!$hasCountryContext): ?>
                                             <td><?= htmlspecialchars($city['pais'] ?? '') ?></td>
                                         <?php endif; ?>
                                         <td><?= htmlspecialchars($city['descripcion'] ?? 'Sin descripcion') ?></td>
                                         <td><?= htmlspecialchars($city['creado_en'] ?? '') ?></td>
                                         <td class="actions">
-                                            <a href="/routes/web.php?url=cities/edit&id=<?= $city['id'] ?><?= htmlspecialchars($countryQuery, ENT_QUOTES) ?>">
-                                                <i class="fas fa-pen"></i> Editar
+                                            <a href="<?= htmlspecialchars($editUrl, ENT_QUOTES) ?>">
+                                                <i class="fas fa-pen"></i>
                                             </a>
                                             <a href="#"
                                                class="delete-city"
-                                               data-url="/routes/web.php?url=cities/delete&id=<?= $city['id'] ?><?= htmlspecialchars($countryQuery, ENT_QUOTES) ?>&name=<?= urlencode($city['ciudad']) ?>"
+                                               data-url="<?= htmlspecialchars($deleteUrl, ENT_QUOTES) ?>"
                                                data-name="<?= htmlspecialchars($city['ciudad']) ?>">
-                                                <i class="fas fa-trash"></i> Eliminar
+                                                <i class="fas fa-trash"></i>
                                             </a>
                                         </td>
                                     </tr>
